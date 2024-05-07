@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { fetchData, pressButton } from '../../api';
+import './home.css';
 
 function Home() {
   const [data, setData] = useState([]);
@@ -21,8 +22,8 @@ function Home() {
 
   return (
     <div>
-      <h1>Health Data</h1>
-      <button onClick={handleButtonClick}>Simulate Button Press</button>
+      <h1 className='heder'>Health Data</h1>
+      <button className="b1" onClick={handleButtonClick}>Simulate Button Press</button>
       <ul>
         {data.map((item, index) => (
           <li key={index}>Heart Rate: {item}</li>
