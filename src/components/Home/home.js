@@ -1,21 +1,22 @@
 import React, { useState, useEffect } from 'react';
-import { fetchData } from '../../api';
-import axios from 'axios'; 
+import { fetchData, pressButton } from '../../api';
 
 function Home() {
   const [data, setData] = useState([]);
 
   useEffect(() => {
-    const getData = async () => {
-      const jsonData = await fetchData();
-      setData(jsonData);
-    };
+    const intervalId = setInterval(getData, 500);
 
-    getData();
+    return () => clearInterval(intervalId);
   }, []);
 
+  const getData = async () => {
+    const newData = await fetchData();
+    setData(newData);
+  };
+
   const handleButtonClick = async () => {
-    await axios.post('http://localhost:5000/press-button');
+    await pressButton();
   };
 
   return (
@@ -24,9 +25,7 @@ function Home() {
       <button onClick={handleButtonClick}>Simulate Button Press</button>
       <ul>
         {data.map((item, index) => (
-          <li key={index}>
-            Heart Rate: {item}
-          </li>
+          <li key={index}>Heart Rate: {item}</li>
         ))}
       </ul>
     </div>

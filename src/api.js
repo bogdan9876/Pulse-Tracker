@@ -1,32 +1,19 @@
+import axios from 'axios';
+
 export const fetchData = async () => {
   try {
-    const response = await fetch('http://localhost:5000/api/data');
-    const jsonData = await response.json();
-    return jsonData;
+    const response = await axios.get('http://localhost:5000/api/data');
+    return response.data;
   } catch (error) {
     console.error('Error fetching data:', error);
     return [];
   }
 };
 
-const simulateButtonPress = async () => {
+export const pressButton = async () => {
   try {
-    const response = await fetch('http://localhost:5000/api/button', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({ button: 31 }),
-    });
-
-    if (response.ok) {
-      console.log('Button press simulated successfully');
-    } else {
-      console.error('Failed to simulate button press');
-    }
+    await axios.post('http://localhost:5000/press-button');
   } catch (error) {
-    console.error('Error simulating button press:', error);
+    console.error('Error pressing button:', error);
   }
 };
-
-export { simulateButtonPress };
