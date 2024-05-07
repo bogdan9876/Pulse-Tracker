@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { fetchData , simulateButtonPress} from '../../api';
+import { fetchData } from '../../api';
+import axios from 'axios'; 
 
 function Home() {
   const [data, setData] = useState([]);
@@ -14,7 +15,7 @@ function Home() {
   }, []);
 
   const handleButtonClick = async () => {
-    await simulateButtonPress();
+    await axios.post('http://localhost:5000/press-button');
   };
 
   return (
