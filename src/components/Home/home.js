@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { fetchData } from '../../api';
+import { fetchData , simulateButtonPress} from '../../api';
 
 function Home() {
   const [data, setData] = useState([]);
@@ -13,9 +13,14 @@ function Home() {
     getData();
   }, []);
 
+  const handleButtonClick = async () => {
+    await simulateButtonPress();
+  };
+
   return (
     <div>
       <h1>Health Data</h1>
+      <button onClick={handleButtonClick}>Simulate Button Press</button>
       <ul>
         {data.map((item, index) => (
           <li key={index}>
