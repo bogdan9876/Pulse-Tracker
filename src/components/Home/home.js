@@ -34,7 +34,7 @@ function Home() {
         <img src="arrow.svg" alt="Arrow" className="arrow-icon" />
       </div>
       <div className="buttons">
-      <div className="button" onClick={handleButtonClick}>Press</div>
+      <div className="button" onClick={handleButtonClick}>PRESS</div>
       </div>
       <ul>
         {data.map((item, index) => (
