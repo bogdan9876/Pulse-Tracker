@@ -33,7 +33,9 @@ function Home() {
         <div className="header-content">HEART</div>
         <img src="arrow.svg" alt="Arrow" className="arrow-icon" />
       </div>
-      <button onClick={handleButtonClick}>Simulate Button Press</button>
+      <div className="buttons">
+      <div className="button" onClick={handleButtonClick}>Press</div>
+      </div>
       <ul>
         {data.map((item, index) => (
           <li key={index}>Heart Rate: {item}</li>
