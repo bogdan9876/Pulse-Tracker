@@ -34,7 +34,12 @@ function Home() {
         <img src="arrow.svg" alt="Arrow" className="arrow-icon" />
       </div>
       <div className="buttons">
-      <div className="button" onClick={handleButtonClick}>PRESS</div>
+        <div className="button" onClick={handleButtonClick}>
+          <div className="circle"></div>
+          <div className="circle"></div>
+          <div className="circle"></div>
+          PRESS
+        </div>
       </div>
       <ul>
         {data.map((item, index) => (
