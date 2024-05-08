@@ -39,7 +39,6 @@ function Header({ searchTerm, onSearchChange }) {
                 <button type="button" className="header__sign-out" onClick={handleSignOut}>
                     Sign me out
                 </button>
-                <input type="search" className="header__search" placeholder="Search" value={searchTerm} onChange={onSearchChange} />
             </div>
         </header>
     );
