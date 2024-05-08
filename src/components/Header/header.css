@@ -1,4 +1,16 @@
 .header {
-    margin: 15px 0 50px;
+    margin: 15px auto 50px;
+    width: 90%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    
 }
 
+.logo {
+}
+
+.account {
+    font-size: 30px;
+    
+}
