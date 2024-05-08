@@ -1,4 +1,5 @@
 import { Outlet, Navigate } from 'react-router-dom'
+import axios from 'axios';
 
 const ProtectedRoute = () => {
     let auth = {token: localStorage.getItem('loggedInUser')}
