@@ -24,8 +24,8 @@ function Home() {
   return (
     <div>
       <Header />
-      <h1 className='heder'>Health Data</h1>
-      <button className="b1" onClick={handleButtonClick}>Simulate Button Press</button>
+      <div className='heder'>MONITOR</div>
+      <button onClick={handleButtonClick}>Simulate Button Press</button>
       <ul>
         {data.map((item, index) => (
           <li key={index}>Heart Rate: {item}</li>

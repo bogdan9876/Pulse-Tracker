@@ -1,11 +1,6 @@
 .heder {
-    width: 80%;
-    margin: 0 auto;
+    text-align: center;
+    font-size: 96px;
+    font-weight: 400;
 }
 
-.b1 {
-    width: 20%;
-    margin-left: 5rem;
-    height: 3rem;
-    font-size: 20px;
-}
