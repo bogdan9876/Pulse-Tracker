@@ -30,10 +30,10 @@ function Home() {
         <img src="heart.svg" alt="Heart" className="heart-icon" />
       </div>
       <div className="sub-header">
-        <div className="header-content">
-          HEART <img src="arrow.svg" alt="Arrow" className="arrow-icon" />
-        </div>
-      </div>      <button onClick={handleButtonClick}>Simulate Button Press</button>
+        <div className="header-content">HEART</div>
+        <img src="arrow.svg" alt="Arrow" className="arrow-icon" />
+      </div>
+      <button onClick={handleButtonClick}>Simulate Button Press</button>
       <ul>
         {data.map((item, index) => (
           <li key={index}>Heart Rate: {item}</li>
