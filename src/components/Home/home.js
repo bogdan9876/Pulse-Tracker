@@ -1,15 +1,16 @@
 import React, { useState, useEffect } from 'react';
 import { fetchData, pressButton } from '../../api';
 import './home.css';
+import Header from '../Header/header';
 
 function Home() {
   const [data, setData] = useState([]);
 
-  useEffect(() => {
-    const intervalId = setInterval(getData, 500);
+  // useEffect(() => {
+  //   const intervalId = setInterval(getData, 500);
 
-    return () => clearInterval(intervalId);
-  }, []);
+  //   return () => clearInterval(intervalId);
+  // }, []);
 
   const getData = async () => {
     const newData = await fetchData();
@@ -22,6 +23,7 @@ function Home() {
 
   return (
     <div>
+      <Header />
       <h1 className='heder'>Health Data</h1>
       <button className="b1" onClick={handleButtonClick}>Simulate Button Press</button>
       <ul>

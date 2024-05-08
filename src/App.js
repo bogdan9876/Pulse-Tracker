@@ -1,7 +1,6 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 
-import Header from './components/Header/header';
 import Home from './components/Home/home';
 import ProtectedRoute from './utils/ProtectedRoute';
 import Login from './components/Login/login';
@@ -11,7 +10,6 @@ function App() {
   return (
     <Router>
       <Routes>
-        <Route element={<Header />} />
         <Route element={<ProtectedRoute />}>
           <Route path="/" element={<Home />} />
         </Route>
