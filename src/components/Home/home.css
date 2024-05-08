@@ -62,7 +62,7 @@
     letter-spacing: 10px;
 }
 
-  .button::before {
+.button::before {
     content: '';
     position: absolute;
     top: 50%;
@@ -74,9 +74,9 @@
     background-color: #f99bc4;
     z-index: -1;
     transition: background-color 0.3s ease;
-  }
+}
 
-  .button::after {
+.button::after {
     content: '';
     position: absolute;
     top: 50%;
@@ -88,4 +88,4 @@
     background-color: #f5acd1;
     z-index: -2;
     transition: background-color 0.3s ease;
-  }
+}
