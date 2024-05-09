@@ -107,3 +107,14 @@
     z-index: -3;
     transition: background-color 0.3s ease;
 }
+
+.liStyle {
+    width: 1346px;
+    height: 229px;
+    top: 2166px;
+    left: 287px;
+    border-radius: 32px;
+    background-color: #DAE3FE;
+    box-shadow: 0px 4px 18.9px -3px rgba(0, 0, 0, 0.25);
+    margin-bottom: 10px;
+  };

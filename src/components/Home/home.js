@@ -42,9 +42,23 @@ function Home() {
         </div>
       </div>
       <ul>
-  {data.map((item, index) => (
-          <li key={index}>Heart Rate: {item}</li>
-        ))}
+        {data.map((item, index) => {
+          const createdAt = new Date(item.created_at);
+          const date = `${createdAt.getDate()}.${createdAt.getMonth() + 1}.${createdAt.getFullYear()}`;
+          const time = `${createdAt.getHours()}:${createdAt.getMinutes()}`;
+
+          return (
+            <li key={index} className="liStyle">
+              Heart Rate: {item.heart_rate}
+              <div>
+                Date: {date}
+              </div>
+              <div>
+                Time: {time}
+              </div>
+            </li>
+          );
+        })}
       </ul>
     </div>
   );
