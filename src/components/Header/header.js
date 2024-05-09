@@ -1,10 +1,11 @@
 import './header.css';
+import { NavLink} from 'react-router-dom';
 
 function Header() {
     return (
         <div className="header">
-            <img src="logo.svg" alt="Logo" className="logo" />
-            <div className="account">Account</div>
+            <NavLink exact to="/"><img src="logo.svg" alt="Logo" className="logo" /></NavLink>
+            <NavLink to="/account" className="account">Account</NavLink>
         </div>
     );
 }
