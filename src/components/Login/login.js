@@ -32,16 +32,16 @@ const Login = () => {
 
   return (
     <div className="login-container">
-      <h2>Login</h2>
+      <div className='login'>Login</div>
       <Formik
         initialValues={initialValues}
         validationSchema={validationSchema}
         onSubmit={handleLogin}
       >
         <Form className="input-container">
-          <Field className="login-input" type="text" name="email" placeholder="Email" />
+          <Field className="login-input" type="text" name="email" placeholder="Your email" />
           <ErrorMessage name="email" component={ErrorValid} />
-          <Field className="login-input" type="password" name="password" placeholder="Password" />
+          <Field className="login-input" type="password" name="password" placeholder="*******" />
           <ErrorMessage name="password" component={ErrorValid} />
           <button className="login-button" type="submit">Login</button>
         </Form>

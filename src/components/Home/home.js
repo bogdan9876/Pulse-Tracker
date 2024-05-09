@@ -45,7 +45,7 @@ function Home() {
         {data.map((item, index) => {
           const createdAt = new Date(item.created_at);
           const date = `${createdAt.getDate()}.${createdAt.getMonth() + 1}.${createdAt.getFullYear()}`;
-          const time = `${createdAt.getHours()}:${createdAt.getMinutes()}`;
+          const time = `${createdAt.getHours() - 3}:${createdAt.getMinutes()}`;
 
           return (
             <li key={index} className="liStyle">
