@@ -1,65 +1,74 @@
-.register-container {
-    max-width: 600px;
-    margin: 0 auto;
-    padding: 20px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    background-color: #f9f9f9;
-    text-align: center;
-    margin-top: 190px;
-    margin-bottom: 190px;
+.register-input {
+    width: 49%;
+    margin-bottom: 10px;
+    padding: 1rem 1rem 1rem 1rem;
+    border: none;
+    border-radius: 15px;
+    font-size: 32px;
+    color:black;
 }
 
-.register-input {
-    width: calc(100% - 20px);
-    margin-bottom: 10px;
-    padding: 8px;
-    border: 1px solid #ccc;
-    border-radius: 3px;
-    font-size: 1rem;
+.register {
+    font-size: 48px;
+    margin-bottom: 2rem;
+    margin-top: 2rem;
+    text-align: center;
 }
+
 
 .register-button {
-    width: 100%;
-    appearance: none;
-    border: 2px solid #000;
-    box-sizing: border-box;
+    width: fit-content;
+    height: fit-content;
+    padding: 14px 25px;
+    border: none;
+    border-radius: 15px;
+    background-color: #BDD0FB;
+    font-size: 48px;
     cursor: pointer;
-    font-size: 20px;
-    font-weight: 600;
-    line-height: normal;
-    padding: 7px 10px;
-    outline: none;
-    text-align: center;
-    text-decoration: none;
-    transition: all 300ms cubic-bezier(.23, 1, 0.32, 1);
     user-select: none;
     -webkit-user-select: none;
     touch-action: manipulation;
     will-change: transform;
-}
-
-.register-button:hover {
-    background-color: #84909c;
-}
-
-.register-text {
-    font-size: 20px;
-    font-weight: 600;
+    margin-top: 3rem;
 }
 
 .register-container2 {
-    margin-bottom: 20px;
+    margin: 0 auto;
+    padding: 20px;
+    text-align: center;
+    margin-top: 2rem;
+}
+
+.register-text {
+    font-size: 36px;
+    text-align: center;
 }
 
 p.register-text span {
-    color: #007bff;
-    font-size: 20px;
+    color: red;
+    font-size: 36px;
     cursor: pointer;
     text-decoration: none;
     margin-left: 10px;
 }
 
-p.register-text span:hover {
-    text-decoration: none;
+.text {
+    text-align: center;
+    font-size: 36px;
+    margin-bottom: 1rem;
+    margin-right: 53rem;
+}
+
+.text7 {
+    text-align: center;
+    font-size: 36px;
+    margin-bottom: 1rem;
+    margin-right: 48rem;
+}
+
+.text8 {
+    text-align: center;
+    font-size: 36px;
+    margin-bottom: 1rem;
+    margin-right: 40rem;
 }

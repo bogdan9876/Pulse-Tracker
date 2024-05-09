@@ -31,8 +31,8 @@ const Register = () => {
   };
 
   return (
-    <div className="register-container">
-      <h2>Register</h2>
+    <>
+      <div className='register'>Register</div>
       <Formik
         initialValues={initialValues}
         validationSchema={validationSchema}
@@ -40,26 +40,25 @@ const Register = () => {
       >
         <Form className='register-container2'>
           <div className="field-container">
-            <Field className="register-input" type="text" name="username" placeholder="Username" />
-            <ErrorMessage name="username" component={ErrorValid} />
-          </div>
-          <div className="field-container">
+          <p className='text'>Email</p>
             <Field className="register-input" type="text" name="email" placeholder="Email" />
             <ErrorMessage name="email" component={ErrorValid} />
           </div>
           <div className="field-container">
-            <Field className="register-input" type="password" name="password" placeholder="Password" />
+          <p className='text7'>Password</p>
+            <Field className="register-input" type="password" name="password" placeholder="*********" />
             <ErrorMessage name="password" component={ErrorValid} />
           </div>
           <div className="field-container">
-            <Field className="register-input" type="password" name="retypePassword" placeholder="Retype Password" />
+          <p className='text8'>Retype password</p>
+            <Field className="register-input" type="password" name="retypePassword" placeholder="*********" />
             <ErrorMessage name="retypePassword" component={ErrorValid} />
           </div>
           <button className="register-button" type="submit">Register</button>
         </Form>
       </Formik>
       <p className='register-text'>Already a member? <span onClick={() => navigate('/')}>Login</span></p>
-    </div>
+    </>
   );
 };
 
