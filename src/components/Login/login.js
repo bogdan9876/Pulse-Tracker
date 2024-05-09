@@ -39,8 +39,10 @@ const Login = () => {
         onSubmit={handleLogin}
       >
         <Form className="input-container">
+          <p className='text'>Hello</p>
           <Field className="login-input" type="text" name="email" placeholder="Your email" />
           <ErrorMessage name="email" component={ErrorValid} />
+          <p className='text'>Hello</p>
           <Field className="login-input" type="password" name="password" placeholder="*******" />
           <ErrorMessage name="password" component={ErrorValid} />
           <button className="login-button" type="submit">Login</button>
