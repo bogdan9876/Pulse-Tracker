@@ -41,7 +41,7 @@ function Home() {
           PRESS
         </div>
       </div>
-      <ul>
+      <ul className='uls'>
         {data.map((item, index) => {
           const createdAt = new Date(item.created_at);
           const date = `${createdAt.getDate()}.${createdAt.getMonth() + 1}.${createdAt.getFullYear()}`;
@@ -49,12 +49,12 @@ function Home() {
 
           return (
             <li key={index} className="liStyle">
-              Heart Rate: {item.heart_rate}
+              {item.heart_rate}
               <div>
-                Date: {date}
+              {date}
               </div>
               <div>
-                Time: {time}
+              {time}
               </div>
             </li>
           );
