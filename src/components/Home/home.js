@@ -6,11 +6,11 @@ import Header from '../Header/header';
 function Home() {
   const [data, setData] = useState([]);
 
-  // useEffect(() => {
-  //   const intervalId = setInterval(getData, 500);
+  useEffect(() => {
+    const intervalId = setInterval(getData, 500);
 
-  //   return () => clearInterval(intervalId);
-  // }, []);
+    return () => clearInterval(intervalId);
+  }, []);
 
   const getData = async () => {
     const newData = await fetchData();
@@ -42,7 +42,7 @@ function Home() {
         </div>
       </div>
       <ul>
-        {data.map((item, index) => (
+  {data.map((item, index) => (
           <li key={index}>Heart Rate: {item}</li>
         ))}
       </ul>
