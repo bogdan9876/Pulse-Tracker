@@ -1,6 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { FaPaperPlane } from 'react-icons/fa';
-import { sendMessage } from '../../api';
 import './chat.css';
 
 const Chat = () => {
@@ -20,14 +19,27 @@ const Chat = () => {
             setIsGenerating(true);
 
             try {
-                const serverMessage = await sendMessage(newMessage);
+                const response = await fetch('http://127.0.0.1:5000/predict', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ message: newMessage }),
+                });
+
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+
+                const data = await response.json();
+                const serverMessage = { text: data.answer, user: 'server' };
 
                 await new Promise(resolve => setTimeout(resolve, 1000));
 
                 setMessages(prevMessages => [...prevMessages, serverMessage]);
                 localStorage.setItem('chatMessages', JSON.stringify([...messages, serverMessage]));
             } catch (error) {
-                console.error('There was a problem with sending the message:', error);
+                console.error('There was a problem with the fetch operation:', error);
             } finally {
                 setIsGenerating(false);
             }
