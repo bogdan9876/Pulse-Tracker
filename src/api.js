@@ -18,3 +18,20 @@ export const fetchData = async () => {
     console.error('Error fetching data:', error);
   }
 };
+
+export const sendMessage = async (message) => {
+  try {
+      const axiosInstance = axios.create({
+          baseURL: 'http://localhost:5000',
+          headers: {
+              'Content-Type': 'application/json',
+          },
+      });
+
+      const response = await axiosInstance.post('/predict', { message });
+      return response.data;
+  } catch (error) {
+      console.error('There was a problem with sending the message:', error);
+      throw error;
+  }
+};
