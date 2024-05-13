@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { FaPaperPlane } from 'react-icons/fa';
 import './chat.css';
+import { sendMessageToServer } from '../../api';
 
 const Chat = () => {
     const [messages, setMessages] = useState([]);
@@ -19,19 +20,7 @@ const Chat = () => {
             setIsGenerating(true);
 
             try {
-                const response = await fetch('http://127.0.0.1:5000/predict', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify({ message: newMessage }),
-                });
-
-                if (!response.ok) {
-                    throw new Error('Network response was not ok');
-                }
-
-                const data = await response.json();
+                const data = await sendMessageToServer(newMessage);
                 const serverMessage = { text: data.answer, user: 'server' };
 
                 await new Promise(resolve => setTimeout(resolve, 1000));
@@ -39,7 +28,7 @@ const Chat = () => {
                 setMessages(prevMessages => [...prevMessages, serverMessage]);
                 localStorage.setItem('chatMessages', JSON.stringify([...messages, serverMessage]));
             } catch (error) {
-                console.error('There was a problem with the fetch operation:', error);
+                console.error('There was a problem with sending the message:', error);
             } finally {
                 setIsGenerating(false);
             }
@@ -72,7 +61,7 @@ const Chat = () => {
                             <div className="message-container">
                                 <img
                                     className="message-sender-photo"
-                                    src={message.user === 'user' ? '/images/user.png' : '/images/chatbot.png'}
+                                    src={message.user === 'user' ? '/user.png' : '/chatbot.png'}
                                     alt={message.user}
                                 />
                                 <div className="message-content">
