@@ -1,0 +1,29 @@
+.profile-header {
+    text-align: center;
+    font-size: 64px;
+    font-weight: 400;
+    letter-spacing: 8px;
+    margin-top: 2rem;
+}
+
+.profile-container {
+    width: 80%;
+}
+
+.logout {
+    margin-right: 2rem;
+}
+
+.profile-logout {
+    text-align: right;
+    cursor: pointer;
+}
+
+.logout {
+    font-size: 36px;
+}
+
+.logout-icon {
+    vertical-align: middle;
+    margin-bottom: 1rem;
+}

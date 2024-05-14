@@ -5,7 +5,7 @@ function Header() {
     return (
         <div className="header">
             <NavLink exact to="/"><img src="logo.svg" alt="Logo" className="logo" /></NavLink>
-            <NavLink to="/account" className="account">Account</NavLink>
+            <NavLink to="/profile" className="account">Account</NavLink>
         </div>
     );
 }
