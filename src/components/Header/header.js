@@ -5,7 +5,10 @@ function Header() {
     return (
         <div className="header">
             <NavLink exact to="/"><img src="logo.svg" alt="Logo" className="logo" /></NavLink>
-            <NavLink to="/profile" className="account">Account</NavLink>
+            <div className="account">
+            <NavLink to="/chat" className="header-chat" >ChatAI(demo)</NavLink>
+            <NavLink to="/profile" className="header-account" >Account</NavLink>
+            </div>
         </div>
     );
 }

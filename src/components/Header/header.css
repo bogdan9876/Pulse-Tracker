@@ -13,6 +13,15 @@
 
 .account {
     font-size: 30px;
+}
+
+.header-chat {
+    text-decoration: none;
+    color: black;
+    margin-right: 4rem;
+}
+
+.header-account {
     text-decoration: none;
     color: black;
 }

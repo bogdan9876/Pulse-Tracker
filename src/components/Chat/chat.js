@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { FaPaperPlane } from 'react-icons/fa';
 import './chat.css';
+import Header from '../Header/header';
 import { sendMessageToServer } from '../../api';
 
 const Chat = () => {
@@ -53,44 +54,39 @@ const Chat = () => {
     }, []);
 
     return (
-        <div className="Chat">
-            <div ref={chatContainerRef} className="Chat-container">
-                <ul className="Chat-messages">
-                    {messages.map((message, index) => (
-                        <li key={index} className={`Chat-message ${message.user}`}>
-                            <div className="message-container">
-                                <img
-                                    className="message-sender-photo"
-                                    src={message.user === 'user' ? '/user.png' : '/chatbot.png'}
-                                    alt={message.user}
-                                />
-                                <div className="message-content">
-                                    <span className="message-sender">{message.user === 'user' ? 'You: ' : 'Chatbot: '}</span>
-                                    {message.text}
+        <>
+            <Header />
+            <div className="Chat">
+                <div ref={chatContainerRef} className="Chat-container">
+                    <ul className="Chat-messages">
+                        {messages.map((message, index) => (
+                            <li key={index} className={`Chat-message ${message.user}`}>
+                                <div className="message-container">
+                                    <img
+                                        className="message-sender-photo"
+                                        src={message.user === 'user' ? '/user.png' : '/chatbot.png'}
+                                        alt={message.user} />
+                                    <div className="message-content">
+                                        <span className="message-sender">{message.user === 'user' ? 'You: ' : 'Chatbot: '}</span>
+                                        {message.text}
+                                    </div>
                                 </div>
-                            </div>
-                        </li>
-                    ))}
-                </ul>
-            </div>
-            <div className="Chat-input">
-                <div className="input-container">
-                    <input
-                        type="text"
-                        value={newMessage}
-                        onChange={handleInputChange}
-                        onKeyPress={handleKeyPress}
-                        placeholder="Напишіть повідомлення..."
-                        className="input-field"
-                    />
-                    <button className="send-button" onClick={addMessage}>
-                        <div className="icon-container">
-                            <FaPaperPlane className="plane-icon" />
-                        </div>
-                    </button>
+                            </li>
+                        ))}
+                    </ul>
                 </div>
-            </div>
-        </div>
+                <div className="Chat-input">
+                    <div className="input-container">
+                        <input
+                            type="text"
+                            value={newMessage}
+                            onChange={handleInputChange}
+                            onKeyPress={handleKeyPress}
+                            placeholder="Write your question here"
+                            className="input-field" />
+                    </div>
+                </div>
+            </div></>
     );
 };
 
