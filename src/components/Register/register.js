@@ -16,6 +16,7 @@ const Register = () => {
   };
 
   const validationSchema = Yup.object().shape({
+    username: Yup.string().required('Username is required'),
     email: Yup.string().email('Invalid email address').required('Email is required'),
     password: Yup.string().required('Password is required').min(10, 'Password must be at least 10 characters'),
     retypePassword: Yup.string()
@@ -38,6 +39,11 @@ const Register = () => {
         onSubmit={handleRegister}
       >
         <Form className='register-container2'>
+        <p className='text77'>Username</p>
+          <div className="field-container">
+            <Field className="register-input" type="text" name="username" placeholder="Username" />
+            <ErrorMessage name="username" component={ErrorValid} />
+          </div>
           <p className='text'>Email</p>
           <div className="field-container">
             <Field className="register-input" type="text" name="email" placeholder="Email" />
