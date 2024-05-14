@@ -1,0 +1,129 @@
+.item {
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 1px solid #212121;
+    padding: 10px;
+}
+
+.itemNumber {
+    margin-left: 10px;
+    font-size: 40px;
+    margin-top: 3rem;
+}
+
+.titleContainer {
+    display: flex;
+    align-items: center;
+    margin-top: 4rem;
+    margin-bottom: 2rem;
+}
+
+.title {
+    font-size: 48px;
+    margin-left: 20rem;
+    letter-spacing: 5px;
+    font-weight: 500;
+}
+
+.extraImage {
+    margin-top: 2rem;
+    border-radius: 15%;
+    width: 600px;
+}
+
+.learnMoreContainer {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    margin-top: 1rem;
+    margin-left: 12rem;
+}
+
+.learnMore {
+    display: flex;
+    align-items: center;
+    border: 2px solid #212121;
+    border-radius: 15px;
+    padding: 10px;
+    margin-left: 5rem;
+}
+
+.learnMoreText {
+    font-size: 24px;
+    margin-right: 1rem;
+    color: red;
+    padding-right: 0.5rem;
+}
+
+.arrowIcon {
+    width: 24px;
+    height: 24px;
+    fill: #212121;
+}
+
+.quote {
+    display: flex;
+    align-items: center;
+}
+
+.quoteText {
+    font-size: 96px;
+    margin-top: 5rem;
+}
+
+.quoteContent {
+    font-size: 24px;
+    margin-left: 20px;
+    margin-top: 5rem;
+}
+
+.leftSection1 {
+    flex: 1;
+    padding-right: 2rem;
+    margin-right: 3rem;
+}
+
+.rightSection1 {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.itemText1 {
+    font-size: 24px;
+    padding-top: 4rem;
+}
+
+.divided1 {
+    display: flex;
+    align-items: flex-start;
+    margin: 0 auto;
+    width: 65%;
+    margin-top: 2rem;
+    border-bottom: 1px solid red;
+}
+
+.learnMoreContainer5 {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    margin-top: 1rem;
+    margin-right: 1rem;
+    cursor: pointer;
+}
+
+.learnMore5 {
+    display: flex;
+    align-items: center;
+    border-radius: 15px;
+    padding: 10px;
+    margin-left: 5rem;
+}
+
+.learnMoreText5 {
+    font-size: 24px;
+    margin-right: 1rem;
+    color: red;
+    padding-right: 0.5rem;
+}

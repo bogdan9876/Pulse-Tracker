@@ -7,6 +7,7 @@ import Login from './components/Login/login';
 import Register from './components/Register/register';
 import Chat from './components/Chat/chat.js';
 import Profile from './components/Profile/profile.js';
+import Doctor from './components/Doctor/doctor.js';
 import CustomScrollbar from './components/CustomScrollbar/CustomScrollbar.js';
 
 function App() {
@@ -17,6 +18,7 @@ function App() {
         <Route element={<ProtectedRoute />}>
           <Route path="/" element={<Home />} />
           <Route path="/chat" element={<Chat />} />
+          <Route path="/doctor" element={<Doctor />} />
           <Route path="/profile" element={<Profile />} />
         </Route>
         <Route path="/login" element={<Login />} />
