@@ -24,10 +24,27 @@ const Register = () => {
       .required('Please confirm your password'),
   });
 
-  const handleRegister = (values) => {
-    localStorage.setItem('registeredUser', values.email);
-    localStorage.setItem('registeredPassword', values.password);
-    navigate('/login');
+  const handleRegister = async (values) => {
+    try {
+      const response = await fetch('http://localhost:5000/register', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(values),
+      });
+      const data = await response.json();
+      if (response.ok) {
+        localStorage.setItem('registeredUser', values.email);
+        localStorage.setItem('registeredPassword', values.password);
+        navigate('/login');
+      } else {
+        alert(data.error || 'An error occurred');
+      }
+    } catch (error) {
+      console.error('Error:', error);
+      alert('An error occurred');
+    }
   };
 
   return (
@@ -39,7 +56,7 @@ const Register = () => {
         onSubmit={handleRegister}
       >
         <Form className='register-container2'>
-        <p className='text77'>Username</p>
+          <p className='text77'>Username</p>
           <div className="field-container">
             <Field className="register-input" type="text" name="username" placeholder="Username" />
             <ErrorMessage name="username" component={ErrorValid} />

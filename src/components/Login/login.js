@@ -18,15 +18,25 @@ const Login = () => {
     password: Yup.string().required('Password is required'),
   });
 
-  const handleLogin = (values) => {
-    const registeredUser = localStorage.getItem('registeredUser');
-    const registeredPassword = localStorage.getItem('registeredPassword');
-
-    if (values.email === registeredUser && values.password === registeredPassword) {
-      localStorage.setItem('loggedInUser', values.email);
-      navigate('/');
-    } else {
-      alert('Invalid credentials');
+  const handleLogin = async (values) => {
+    try {
+      const response = await fetch('http://localhost:5000/login', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(values),
+      });
+      const data = await response.json();
+      if (response.ok) {
+        localStorage.setItem('loggedInUser', values.email);
+        navigate('/');
+      } else {
+        alert(data.error || 'An error occurred');
+      }
+    } catch (error) {
+      console.error('Error:', error);
+      alert('An error occurred');
     }
   };
 
