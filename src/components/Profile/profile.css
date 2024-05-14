@@ -73,3 +73,19 @@
 .profile-text1:nth-of-type(5) {
     margin-right: 39rem;
 }
+
+.save-button{
+    width: fit-content;
+    height: fit-content;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 15px;
+    background-color: #BDD0FB;
+    font-size: 48px;
+    cursor: pointer;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+    will-change: transform;
+    margin-top: 2rem;
+}

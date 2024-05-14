@@ -89,8 +89,8 @@ const Profile = () => {
                     <span className='profile-text1'>Address</span>
                     <input type="text" name="address" value={userData.address} onChange={handleInputChange} placeholder="Your address" />
                 </div>
-                <div className='profile-logout'>
                     <button className="save-button" onClick={handleSaveChanges}>Save changes</button>
+                <div className='profile-logout'>
                     <div className="logout-container" onClick={handleSignOut}>
                         <span className="logout">Log out</span>
                         <img src="logout.svg" alt="Heart" className="logout-icon" />
