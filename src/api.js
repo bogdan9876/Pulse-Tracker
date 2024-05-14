@@ -3,7 +3,11 @@ import axios from 'axios';
 export const pressButton = async () => {
   try {
     const token = localStorage.getItem('loggedInUser');
-    await axios.post('http://localhost:5000/press-button', { token });
+    await axios.post('http://localhost:5000/press-button', null, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
   } catch (error) {
     console.error('Error pressing button:', error);
   }
