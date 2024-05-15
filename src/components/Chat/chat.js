@@ -64,10 +64,10 @@ const Chat = () => {
                                 <div className="message-container">
                                     <img
                                         className="message-sender-photo"
-                                        src={message.user === 'user' ? '/user.png' : '/chatbot.png'}
+                                        src={message.user === 'user' ? '/user.png' : '/title.svg'}
                                         alt={message.user} />
                                     <div className="message-content">
-                                        <span className="message-sender">{message.user === 'user' ? 'You: ' : 'Chatbot: '}</span>
+                                        <span className="message-sender">{message.user === 'user' ? 'You: ' : 'Cardia Bot: '}</span>
                                         {message.text}
                                     </div>
                                 </div>
