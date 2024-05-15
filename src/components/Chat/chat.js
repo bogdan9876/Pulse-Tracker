@@ -17,17 +17,18 @@ const Chat = () => {
             setMessages(updatedMessages);
             setNewMessage('');
             localStorage.setItem('chatMessages', JSON.stringify(updatedMessages));
-
+    
             setIsGenerating(true);
-
+    
             try {
                 const data = await sendMessageToServer(newMessage);
                 const serverMessage = { text: data.answer, user: 'server' };
-
+    
                 await new Promise(resolve => setTimeout(resolve, 1000));
-
+    
                 setMessages(prevMessages => [...prevMessages, serverMessage]);
-                localStorage.setItem('chatMessages', JSON.stringify([...messages, serverMessage]));
+                const updatedMessagesWithBot = [...updatedMessages, serverMessage];
+                localStorage.setItem('chatMessages', JSON.stringify(updatedMessagesWithBot));
             } catch (error) {
                 console.error('There was a problem with sending the message:', error);
             } finally {
