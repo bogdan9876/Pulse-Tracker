@@ -45,9 +45,12 @@ const Profile = () => {
             [name]: value
         }));
     };
-
+    
     const handleSaveChanges = async () => {
         try {
+            const confirmed = window.confirm('Are you sure you want to save changes?');
+            if (!confirmed) window.location.reload();;
+    
             const token = localStorage.getItem('loggedInUser');
             const response = await fetch('http://localhost:5000/user', {
                 method: 'PUT',
@@ -58,6 +61,7 @@ const Profile = () => {
                 body: JSON.stringify(userData),
             });
             const data = await response.json();
+            window.location.reload();
         } catch (error) {
             console.error('Error:', error);
         }
@@ -89,7 +93,7 @@ const Profile = () => {
                     <span className='profile-text1'>Address</span>
                     <input type="text" name="address" value={userData.address} onChange={handleInputChange} placeholder="Your address" />
                 </div>
-                    <button className="save-button" onClick={handleSaveChanges}>Save changes</button>
+                <button className="save-button" onClick={handleSaveChanges}>Save changes</button>
                 <div className='profile-logout'>
                     <div className="logout-container" onClick={handleSignOut}>
                         <span className="logout">Log out</span>

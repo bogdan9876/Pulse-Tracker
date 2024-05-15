@@ -13,7 +13,7 @@
     padding: 10px;
     width: 60%;
     overflow-y: auto;
-    margin-bottom: 3rem;
+    margin-bottom: 5rem;
 }
 
 .Chat-message {
@@ -51,9 +51,9 @@
     z-index: 3;
 }
 
-.input-container {
+.input-container66 {
     display: flex;
-    width: 70%;
+    width: 65%;
     margin-bottom: 10px;
 }
 

@@ -76,7 +76,7 @@ const Chat = () => {
                     </ul>
                 </div>
                 <div className="Chat-input">
-                    <div className="input-container">
+                    <div className="input-container66">
                         <input
                             type="text"
                             value={newMessage}
