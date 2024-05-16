@@ -32,8 +32,10 @@ const Doctor = () => {
             <div>
                 <div className='main-header'>Doctors</div>
                 <div className='profile-inputs88'>
-                    <input type="text" name="name" placeholder="Find doctor" />
-                    <img src="/loop.svg" alt="Search" className="search-icon88" />
+                    <div className="input-container99">
+                        <input type="text" name="name" placeholder="Find doctor" />
+                        <img src="/loop.svg" alt="Search" className="search-icon88" />
+                    </div>
                 </div>
                 <div className="titleContainer">
                     <h2 className="title">Available doctors</h2>

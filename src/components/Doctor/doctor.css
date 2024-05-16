@@ -136,23 +136,27 @@
     text-align: center;
 }
 
-.profile-inputs88 input {
+.input-container99 {
     position: relative;
-    margin: 0 auto;
     width: 49%;
-    margin-bottom: 10px;
-    padding: 1rem 1rem 1rem 1rem;
+    margin: 0 auto;
+}
+
+.profile-inputs88 input {
+    width: 95%;
+    padding: 1rem 3rem 1rem 1rem;
     border: none;
     border-radius: 15px;
     font-size: 32px;
     color: black;
+    margin-bottom: 10px;
     margin-top: 2rem;
 }
 
 .search-icon88 {
     position: absolute; 
     right: 10px;
-    top: 50%;
+    bottom: 0%;
     transform: translateY(-50%);
     cursor: pointer;
 }
