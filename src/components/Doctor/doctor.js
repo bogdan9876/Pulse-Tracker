@@ -24,6 +24,9 @@ const Doctor = () => {
             <Header />
             <div>
                 <div className='main-header'>Doctors</div>
+                <div className='profile-inputs88'>
+                    <input type="text" name="name" placeholder="Find doctor" />
+                </div>
                 <div className="titleContainer">
                     <h2 className="title">Available doctors</h2>
                 </div>
