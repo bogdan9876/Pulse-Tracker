@@ -5,6 +5,7 @@ import './doctor.css';
 
 const Doctor = () => {
     const [doctors, setDoctors] = useState([]);
+    const [searchQuery, setSearchQuery] = useState('');
 
     const handleSignupClick88 = () => {
         const confirmed = window.confirm('Are you sure that you want to be redirected to a third-party site?');
@@ -14,17 +15,21 @@ const Doctor = () => {
     };
 
     useEffect(() => {
-        const fetchData = async () => {
+        const fetchData88 = async () => {
             try {
-                const response = await axios.get('http://localhost:5000/doctors');
+                const response = await axios.get(`http://localhost:5000/doctors?position=${searchQuery}`);
                 setDoctors(response.data);
             } catch (error) {
                 console.error('Error fetching doctors:', error);
             }
         };
 
-        fetchData();
-    }, []);
+        fetchData88();
+    }, [searchQuery]);
+
+    const handleInputChange88 = (e) => {
+        setSearchQuery(e.target.value);
+    };
 
     return (
         <>
@@ -33,7 +38,13 @@ const Doctor = () => {
                 <div className='main-header'>Doctors</div>
                 <div className='profile-inputs88'>
                     <div className="input-container99">
-                        <input type="text" name="name" placeholder="Find doctor" />
+                        <input
+                            type="text"
+                            name="name"
+                            placeholder="Find doctor"
+                            value={searchQuery}
+                            onChange={handleInputChange88}
+                        />
                         <img src="/loop.svg" alt="Search" className="search-icon88" />
                     </div>
                 </div>
@@ -80,6 +91,6 @@ const Doctor = () => {
             </div>
         </>
     );
-}
+};
 
 export default Doctor;
