@@ -129,6 +129,7 @@
 }
 
 .profile-inputs88 {
+    position: relative;
     display: flex;
     flex-direction: column;
     margin: 0 auto;
@@ -136,6 +137,7 @@
 }
 
 .profile-inputs88 input {
+    position: relative;
     margin: 0 auto;
     width: 49%;
     margin-bottom: 10px;
@@ -143,6 +145,14 @@
     border: none;
     border-radius: 15px;
     font-size: 32px;
-    color:black;
+    color: black;
     margin-top: 2rem;
+}
+
+.search-icon88 {
+    position: absolute; 
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
 }

@@ -6,6 +6,13 @@ import './doctor.css';
 const Doctor = () => {
     const [doctors, setDoctors] = useState([]);
 
+    const handleSignupClick88 = () => {
+        const confirmed = window.confirm('Are you sure that you want to be redirected to a third-party site?');
+        if (confirmed) {
+            window.location.href = 'https://helsi.me';
+        }
+    };
+
     useEffect(() => {
         const fetchData = async () => {
             try {
@@ -26,6 +33,7 @@ const Doctor = () => {
                 <div className='main-header'>Doctors</div>
                 <div className='profile-inputs88'>
                     <input type="text" name="name" placeholder="Find doctor" />
+                    <img src="/loop.svg" alt="Search" className="search-icon88" />
                 </div>
                 <div className="titleContainer">
                     <h2 className="title">Available doctors</h2>
@@ -59,7 +67,7 @@ const Doctor = () => {
                                 <img src={`/doctors/${doctor.image}`} alt="Doctor" className="extraImage" />
                                 <div className="learnMoreContainer5">
                                     <div className="learnMore5">
-                                        <p className="learnMoreText5">Sign up for a visit</p>
+                                        <p className="learnMoreText5" onClick={handleSignupClick88}>Sign up for a visit</p>
                                         <img src="/arrow2.svg" alt="Arrow" className="arrowIcon" />
                                     </div>
                                 </div>
