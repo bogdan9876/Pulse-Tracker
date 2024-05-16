@@ -65,7 +65,7 @@ const Chat = () => {
                                 <div className="message-container">
                                     <img
                                         className="message-sender-photo"
-                                        src={message.user === 'user' ? '/user.png' : '/title.svg'}
+                                        src={message.user === 'user' ? '/user.jpg' : '/chatbot.png'}
                                         alt={message.user} />
                                     <div className="message-content">
                                         <span className="message-sender">{message.user === 'user' ? 'You: ' : 'Cardia Bot: '}</span>

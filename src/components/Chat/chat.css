@@ -9,13 +9,13 @@
 .Chat-container {
     display: flex;
     flex-direction: column;
-    justify-content: flex-start;
     padding: 10px;
     width: 60%;
     overflow-y: auto;
     margin-bottom: 5rem;
     margin-left: auto;
     margin-right: auto;
+    max-width: 1000px;
 }
 
 .Chat-message {
@@ -26,18 +26,6 @@
     color: #000000;
     list-style: none;
     font-size: 22px;
-}
-
-.user-message {
-    background-color: white;
-    color: #ffffff;
-    align-self: flex-end;
-}
-
-.bot-message {
-    background-color: #4caf50;
-    color: white;
-    align-self: flex-start;
 }
 
 .Chat-input {
@@ -68,9 +56,9 @@
     color: black;
 }
 
-
 .message-sender-photo {
-    width: 50px;
-    height: 50px;
+    width: 60px;
+    height: 60px;
     border-radius: 50%;
+    overflow: hidden;
 }
