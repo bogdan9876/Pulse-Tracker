@@ -4,6 +4,7 @@
     align-items: center;
     justify-content: flex-end;
     overflow-x: hidden;
+    position: relative;
 }
 
 .Chat-container {
@@ -16,6 +17,7 @@
     margin-left: auto;
     margin-right: auto;
     max-width: 1000px;
+    z-index: 1;
 }
 
 .Chat-message {
@@ -34,10 +36,12 @@
     align-items: center;
     width: 100%;
     padding: 10px;
+    padding-top: 0px;
     position: fixed;
     bottom: 0;
     left: 0;
-    z-index: 3;
+    background-color: #EAE9FF;
+    z-index: 2;
 }
 
 .input-container66 {
@@ -54,7 +58,10 @@
     border-radius: 15px;
     font-size: 25px;
     color: black;
+    background-color: white;
+    z-index: 3;
 }
+
 
 .message-sender-photo {
     width: 60px;

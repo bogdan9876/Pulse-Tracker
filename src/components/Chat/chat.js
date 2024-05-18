@@ -7,7 +7,6 @@ import { sendMessageToServer } from '../../api';
 const Chat = () => {
     const [messages, setMessages] = useState([]);
     const [newMessage, setNewMessage] = useState('');
-    const [isGenerating, setIsGenerating] = useState(false);
 
     const chatContainerRef = useRef(null);
 
@@ -18,8 +17,7 @@ const Chat = () => {
             setNewMessage('');
             localStorage.setItem('chatMessages', JSON.stringify(updatedMessages));
     
-            setIsGenerating(true);
-    
+            
             try {
                 const data = await sendMessageToServer(newMessage);
                 const serverMessage = { text: data.answer, user: 'server' };
@@ -31,8 +29,6 @@ const Chat = () => {
                 localStorage.setItem('chatMessages', JSON.stringify(updatedMessagesWithBot));
             } catch (error) {
                 console.error('There was a problem with sending the message:', error);
-            } finally {
-                setIsGenerating(false);
             }
         }
     };
@@ -87,7 +83,8 @@ const Chat = () => {
                             className="input-field" />
                     </div>
                 </div>
-            </div></>
+            </div>
+        </>
     );
 };
 
