@@ -1,32 +1,39 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { FaPaperPlane } from 'react-icons/fa';
 import './chat.css';
 import Header from '../Header/header';
-import { sendMessageToServer } from '../../api';
+import { sendMessageToServer, saveChatMessage, getChatHistory } from '../../api';
 
 const Chat = () => {
     const [messages, setMessages] = useState([]);
     const [newMessage, setNewMessage] = useState('');
-
     const chatContainerRef = useRef(null);
+
+    useEffect(() => {
+        const fetchMessages = async () => {
+            try {
+                const chatHistory = await getChatHistory();
+                setMessages(chatHistory);
+            } catch (error) {
+                console.error('Error fetching chat history:', error);
+            }
+        };
+
+        fetchMessages();
+    }, []);
 
     const addMessage = async () => {
         if (newMessage.trim() !== '') {
-            const updatedMessages = [...messages, { text: newMessage, user: 'user' }];
+            const userMessage = { text: newMessage, user: 'user' };
+            const updatedMessages = [...messages, userMessage];
             setMessages(updatedMessages);
             setNewMessage('');
-            localStorage.setItem('chatMessages', JSON.stringify(updatedMessages));
-    
-            
+
             try {
+                await saveChatMessage({ message: newMessage, sender: 'user' });
                 const data = await sendMessageToServer(newMessage);
                 const serverMessage = { text: data.answer, user: 'server' };
-    
-                await new Promise(resolve => setTimeout(resolve, 1000));
-    
                 setMessages(prevMessages => [...prevMessages, serverMessage]);
-                const updatedMessagesWithBot = [...updatedMessages, serverMessage];
-                localStorage.setItem('chatMessages', JSON.stringify(updatedMessagesWithBot));
+                await saveChatMessage({ message: data.answer, sender: 'server' });
             } catch (error) {
                 console.error('There was a problem with sending the message:', error);
             }
@@ -42,13 +49,6 @@ const Chat = () => {
             addMessage();
         }
     };
-
-    useEffect(() => {
-        const savedMessages = localStorage.getItem('chatMessages');
-        if (savedMessages) {
-            setMessages(JSON.parse(savedMessages));
-        }
-    }, []);
 
     return (
         <>

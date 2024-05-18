@@ -23,23 +23,28 @@ export const fetchData = async () => {
   }
 };
 
+
 export const sendMessageToServer = async (message) => {
-  try {
-      const response = await fetch('http://localhost:5000/predict', {
-          method: 'POST',
-          headers: {
-              'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({ message }),
-      });
+  const response = await axios.post(`http://localhost:5000/predict`, { message });
+  return response.data;
+};
 
-      if (!response.ok) {
-          throw new Error('Network response was not ok');
-      }
+export const saveChatMessage = async (messageData) => {
+  const token = localStorage.getItem('loggedInUser');
+  const response = await axios.post(`http://localhost:5000/chat/message`, messageData, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+  });
+  return response.data;
+};
 
-      return await response.json();
-  } catch (error) {
-      console.error('There was a problem with the fetch operation:', error);
-      throw error;
-  }
+export const getChatHistory = async () => {
+  const token = localStorage.getItem('loggedInUser');
+  const response = await axios.get(`http://localhost:5000/chat/history`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+  });
+  return response.data;
 };
