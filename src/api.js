@@ -25,7 +25,12 @@ export const fetchData = async () => {
 
 
 export const sendMessageToServer = async (message) => {
-  const response = await axios.post(`http://localhost:5000/predict`, { message });
+  const token = localStorage.getItem('loggedInUser');
+  const response = await axios.post(`http://localhost:5000/predict`, { message }, {
+  headers: {
+    Authorization: `Bearer ${token}`,
+  },
+  });
   return response.data;
 };
 
