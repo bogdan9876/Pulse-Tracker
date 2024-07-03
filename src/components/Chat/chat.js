@@ -6,6 +6,7 @@ import { sendMessageToServer, saveChatMessage, getChatHistory } from '../../api'
 const Chat = () => {
     const [messages, setMessages] = useState([]);
     const [newMessage, setNewMessage] = useState('');
+    const [isRecording, setIsRecording] = useState(false);
     const chatContainerRef = useRef(null);
 
     useEffect(() => {
@@ -60,6 +61,14 @@ const Chat = () => {
         recognition.lang = 'en-US';
         recognition.interimResults = false;
 
+        recognition.onstart = () => {
+            setIsRecording(true);
+        };
+
+        recognition.onend = () => {
+            setIsRecording(false);
+        };
+
         recognition.onresult = (event) => {
             const transcript = event.results[0][0].transcript;
             setNewMessage(transcript);
@@ -68,6 +77,7 @@ const Chat = () => {
 
         recognition.onerror = (event) => {
             console.error('Speech recognition error', event.error);
+            setIsRecording(false);
         };
 
         recognition.start();
@@ -104,7 +114,12 @@ const Chat = () => {
                             onKeyPress={handleKeyPress}
                             placeholder="Write your question here"
                             className="input-field" />
-                        <button onClick={handleVoiceInput} className="voice-input-button">🎤</button>
+                        <button
+                            onClick={handleVoiceInput}
+                            className={`voice-input-button ${isRecording ? 'recording' : ''}`}
+                        >
+                            🎤
+                        </button>
                     </div>
                 </div>
             </div>
