@@ -2,15 +2,49 @@ import React, { useState, useEffect } from 'react';
 import { fetchData, pressButton } from '../../api';
 import './home.css';
 import Header from '../Header/header';
+import Loader from '../Loader/loader';
 
 function Home() {
   const [data, setData] = useState([]);
+  const [imageLoaded, setImageLoaded] = useState(false);
+  const [pageLoaded, setPageLoaded] = useState(false);
+  const [headerLoaded, setHeaderLoaded] = useState(false);
 
   useEffect(() => {
     const intervalId = setInterval(getData, 500);
 
     return () => clearInterval(intervalId);
   }, []);
+
+  useEffect(() => {
+    const loadImage = async (src) => {
+      return new Promise((resolve, reject) => {
+        const img = new Image();
+        img.onload = () => resolve();
+        img.onerror = (error) => reject(error);
+        img.src = src;
+      });
+    };
+
+    const loadHeader = async () => {
+      await new Promise(resolve => setTimeout(resolve, 100));
+      setHeaderLoaded(true);
+    };
+
+    const loadImages = async () => {
+      await Promise.all([
+        loadImage('heart.svg'),
+        loadImage('arrow.svg'),
+        ...data.map(item => loadImage('liheart.svg')),
+      ]);
+      setImageLoaded(true);
+      setPageLoaded(true);
+    };
+
+    loadHeader();
+    loadImages();
+
+  }, [data]);
 
   const getData = async () => {
     try {
@@ -25,17 +59,21 @@ function Home() {
     await pressButton();
   };
 
+  if (!pageLoaded || !headerLoaded) {
+    return <Loader />;
+  }
+
   return (
     <div>
       <Header />
       <div className='main-header'>MONITOR</div>
       <div className="heart-container">
         <span className="heart-text">your</span>
-        <img src="heart.svg" alt="Heart" className="heart-icon" />
+        {imageLoaded && <img src="heart.svg" alt="Heart" className="heart-icon" />}
       </div>
       <div className="sub-header">
         <div className="header-content">HEART</div>
-        <img src="arrow.svg" alt="Arrow" className="arrow-icon" />
+        {imageLoaded && <img src="arrow.svg" alt="Arrow" className="arrow-icon" />}
       </div>
       <div className="buttons">
         <div className="button" onClick={handleButtonClick}>
@@ -61,7 +99,7 @@ function Home() {
               </div>
               <div className="heartRateContainer">
                 <span className="heartRate">{item.heart_rate}</span>
-                <img src="liheart.svg" alt="Heart" className="heartIcon" />
+                {imageLoaded && <img src="liheart.svg" alt="Heart" className="heartIcon" />}
               </div>
             </li>
           );
