@@ -1,4 +1,5 @@
 import React from 'react';
+import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
@@ -20,25 +21,15 @@ const Login = () => {
 
   const handleLogin = async (values) => {
     try {
-      const response = await fetch('http://localhost:5000/login', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(values),
-      });
-      const data = await response.json();
-      if (response.ok) {
-        localStorage.setItem('loggedInUser', values.email);
+        const response = await axios.post('http://localhost:5000/login', values);
+        const { access_token } = response.data;
+        localStorage.setItem('accessToken', access_token);
         navigate('/');
-      } else {
-        alert(data.error || 'An error occurred');
-      }
     } catch (error) {
-      console.error('Error:', error);
-      alert('An error occurred');
+        console.error('Error:', error);
+        alert('An error occurred');
     }
-  };
+};
 
   return (
     <div className="login-container">

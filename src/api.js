@@ -1,8 +1,9 @@
 import axios from 'axios';
 
+const token = localStorage.getItem('accessToken');
+
 export const pressButton = async () => {
   try {
-    const token = localStorage.getItem('loggedInUser');
     await axios.post('http://localhost:5000/press-button', null, {
       headers: {
         Authorization: `Bearer ${token}`,
@@ -13,19 +14,22 @@ export const pressButton = async () => {
   }
 };
 
+
 export const fetchData = async () => {
   try {
-    const token = localStorage.getItem('loggedInUser');
-    const response = await axios.get('http://localhost:5000/api/data', { headers: { Authorization: `Bearer ${token}` } });
-    return response.data;
+      const response = await axios.get('http://localhost:5000/api/data', {
+          headers: {
+              Authorization: `Bearer ${token}`
+          }
+      });
+      return response.data;
   } catch (error) {
-    console.error('Error fetching data:', error);
+      console.error('Error fetching data:', error);
   }
 };
 
 
 export const sendMessageToServer = async (message) => {
-  const token = localStorage.getItem('loggedInUser');
   const response = await axios.post(`http://localhost:5000/predict`, { message }, {
   headers: {
     Authorization: `Bearer ${token}`,
@@ -35,7 +39,6 @@ export const sendMessageToServer = async (message) => {
 };
 
 export const saveChatMessage = async (messageData) => {
-  const token = localStorage.getItem('loggedInUser');
   const response = await axios.post(`http://localhost:5000/chat/message`, messageData, {
       headers: {
         Authorization: `Bearer ${token}`,
@@ -45,7 +48,6 @@ export const saveChatMessage = async (messageData) => {
 };
 
 export const getChatHistory = async () => {
-  const token = localStorage.getItem('loggedInUser');
   const response = await axios.get(`http://localhost:5000/chat/history`, {
       headers: {
         Authorization: `Bearer ${token}`,

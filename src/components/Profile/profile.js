@@ -6,7 +6,7 @@ import Header from '../Header/header';
 
 const Profile = () => {
     const navigate = useNavigate();
-
+    const token = localStorage.getItem('accessToken');
     const [userData, setUserData] = useState({
         name: '',
         surname: '',
@@ -18,7 +18,6 @@ const Profile = () => {
     useEffect(() => {
         const fetchUserData = async () => {
             try {
-                const token = localStorage.getItem('loggedInUser');
                 const response = await fetch('http://localhost:5000/user', {
                     method: 'GET',
                     headers: {
@@ -51,7 +50,6 @@ const Profile = () => {
             const confirmed = window.confirm('Are you sure you want to save changes?');
             if (!confirmed) window.location.reload();;
     
-            const token = localStorage.getItem('loggedInUser');
             const response = await fetch('http://localhost:5000/user', {
                 method: 'PUT',
                 headers: {
@@ -71,7 +69,7 @@ const Profile = () => {
         const confirmed = window.confirm('Are you sure you want to sign out?');
 
         if (confirmed) {
-            localStorage.removeItem('loggedInUser');
+            localStorage.removeItem('accessToken');
             navigate('/login');
         }
     };
