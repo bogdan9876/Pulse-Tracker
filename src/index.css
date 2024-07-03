@@ -19,3 +19,7 @@ button,
 input {
   font-family: inherit;
 }
+
+input {
+  outline: none;
+}

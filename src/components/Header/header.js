@@ -12,7 +12,7 @@ function Header() {
       };
 
     return (
-        <div className="header">
+        <div className={`header ${isDarkMode ? 'dark' : ''}`}>
             <NavLink exact to="/"><img src="logo.svg" alt="Logo" className="logo" /></NavLink>
             <div className="account">
             <img src={isDarkMode ? '/moon.svg' : '/sun-light.svg'} onClick={handleSunClick}/>
