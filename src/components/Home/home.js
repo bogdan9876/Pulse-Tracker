@@ -13,8 +13,12 @@ function Home() {
   }, []);
 
   const getData = async () => {
-    const newData = await fetchData();
-    setData(newData || []);
+    try {
+      const newData = await fetchData();
+      setData(newData || []);
+    } catch (error) {
+      console.error('Error fetching data:', error);
+    }
   };
 
   const handleButtonClick = async () => {
