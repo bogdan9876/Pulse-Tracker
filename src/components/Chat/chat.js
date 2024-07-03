@@ -50,6 +50,29 @@ const Chat = () => {
         }
     };
 
+    const handleVoiceInput = () => {
+        if (!('webkitSpeechRecognition' in window)) {
+            alert('Web Speech API не підтримується у вашому браузері.');
+            return;
+        }
+
+        const recognition = new window.webkitSpeechRecognition();
+        recognition.lang = 'en-US';
+        recognition.interimResults = false;
+
+        recognition.onresult = (event) => {
+            const transcript = event.results[0][0].transcript;
+            setNewMessage(transcript);
+            addMessage();
+        };
+
+        recognition.onerror = (event) => {
+            console.error('Speech recognition error', event.error);
+        };
+
+        recognition.start();
+    };
+
     return (
         <>
             <Header />
@@ -81,6 +104,7 @@ const Chat = () => {
                             onKeyPress={handleKeyPress}
                             placeholder="Write your question here"
                             className="input-field" />
+                        <button onClick={handleVoiceInput} className="voice-input-button">🎤</button>
                     </div>
                 </div>
             </div>

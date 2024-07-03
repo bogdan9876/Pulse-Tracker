@@ -14,7 +14,7 @@ function Home() {
 
   const getData = async () => {
     const newData = await fetchData();
-    setData(newData);
+    setData(newData || []);
   };
 
   const handleButtonClick = async () => {
@@ -42,7 +42,7 @@ function Home() {
         </div>
       </div>
       <ul className="uls">
-        {data.map((item, index) => {
+        {data && data.map((item, index) => {
           const createdAt = new Date(item.created_at);
           const date = `${createdAt.getDate()}.${createdAt.getMonth() + 1}.${createdAt.getFullYear()}`;
           const time = `${createdAt.getHours() - 3}:${createdAt.getMinutes()}`;
@@ -63,7 +63,6 @@ function Home() {
           );
         })}
       </ul>
-
     </div>
   );
 }

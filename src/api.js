@@ -16,16 +16,12 @@ export const pressButton = async () => {
 
 
 export const fetchData = async () => {
-  try {
-      const response = await axios.get('http://localhost:5000/api/data', {
-          headers: {
-              Authorization: `Bearer ${token}`
-          }
-      });
-      return response.data;
-  } catch (error) {
-      console.error('Error fetching data:', error);
-  }
+  const response = await axios.get('http://localhost:5000/api/data', {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
+  return response.data;
 };
 
 
