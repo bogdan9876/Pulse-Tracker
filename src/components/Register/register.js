@@ -2,11 +2,19 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
+import { useSelector, useDispatch } from 'react-redux';
 import ErrorValid from '../ErrorValid/errorValid';
+import { toggleTheme } from '../../store';
 import './register.css';
 
 const Register = () => {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const isDarkMode = useSelector(state => state.isDarkMode);
+
+  const handleSunClick = () => {
+    dispatch(toggleTheme());
+  };
 
   const initialValues = {
     username: '',
@@ -49,6 +57,9 @@ const Register = () => {
 
   return (
     <>
+      <div className='dark-login'>
+        <img src={isDarkMode ? '/sun.svg' : '/moon.svg'} onClick={handleSunClick} />
+      </div>
       <div className='register'>Register</div>
       <Formik
         initialValues={initialValues}
@@ -79,7 +90,7 @@ const Register = () => {
           <button className="register-button" type="submit">Register</button>
         </Form>
       </Formik>
-      <p className='register-text'>Already a member? <span onClick={() => navigate('/')}>Login</span></p>
+      <p className='register-text'>Already a member? <span onClick={() => navigate('/login')}>Login</span></p>
     </>
   );
 };

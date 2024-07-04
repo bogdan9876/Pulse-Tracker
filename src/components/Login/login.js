@@ -2,12 +2,21 @@ import React from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
+import { useSelector, useDispatch } from 'react-redux';
 import * as Yup from 'yup';
 import ErrorValid from '../ErrorValid/errorValid';
 import './login.css';
+import { toggleTheme } from '../../store';
 
 const Login = () => {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const isDarkMode = useSelector(state => state.isDarkMode);
+
+  const handleSunClick = () => {
+    dispatch(toggleTheme());
+  };
+
 
   const initialValues = {
     email: '',
@@ -21,18 +30,21 @@ const Login = () => {
 
   const handleLogin = async (values) => {
     try {
-        const response = await axios.post('http://localhost:5000/login', values);
-        const { access_token } = response.data;
-        localStorage.setItem('accessToken', access_token);
-        navigate('/');
+      const response = await axios.post('http://localhost:5000/login', values);
+      const { access_token } = response.data;
+      localStorage.setItem('accessToken', access_token);
+      navigate('/');
     } catch (error) {
-        console.error('Error:', error);
-        alert('An error occurred');
+      console.error('Error:', error);
+      alert('An error occurred');
     }
-};
+  };
 
   return (
     <div className="login-container">
+      <div className='dark-login'>
+        <img src={isDarkMode ? '/sun.svg' : '/moon.svg'} onClick={handleSunClick} />
+      </div>
       <div className='login'>Login</div>
       <Formik
         initialValues={initialValues}
