@@ -3,10 +3,12 @@ import { NavLink, useNavigate } from 'react-router-dom';
 import { Form } from 'formik';
 import './profile.css';
 import Header from '../Header/header';
+import { useSelector } from 'react-redux';
 
 const Profile = () => {
     const navigate = useNavigate();
     const token = localStorage.getItem('accessToken');
+    const isDarkMode = useSelector(state => state.isDarkMode);
     const [userData, setUserData] = useState({
         name: '',
         surname: '',
@@ -79,8 +81,8 @@ const Profile = () => {
             <Header />
             <div className='profile-header'>MY ACCOUNT</div>
             <div className='profile-container'>
-                <div className='profile-inputs'>
-                    <span className='profile-text1'>Name:</span>
+                <div className={`profile-inputs ${isDarkMode ? 'dark' : ''}`}>
+                    <span className='profile-text1'>Name</span>
                     <input type="text" name="name" value={userData.name} onChange={handleInputChange} placeholder="Your name" />
                     <span className='profile-text1'>Surname</span>
                     <input type="text" name="surname" value={userData.surname} onChange={handleInputChange} placeholder="Your surname" />
@@ -95,7 +97,7 @@ const Profile = () => {
                 <div className='profile-logout'>
                     <div className="logout-container" onClick={handleSignOut}>
                         <span className="logout">Log out</span>
-                        <img src="logout.svg" alt="Heart" className="logout-icon" />
+                        <img src={isDarkMode ? '/logout-dark.svg' : '/logout.svg'} alt="Heart" className="logout-icon" />
                     </div>
                 </div>
             </div>

@@ -39,6 +39,15 @@
     color:black;
 }
 
+.profile-inputs.dark input {
+    background-color:#212121;
+    color: #D5D4EB;
+}
+
+.profile-inputs.dark input[type="email"] {
+    background-color: #2b2b2b;
+}
+
 .logout {
     font-size: 36px;
 }
@@ -55,7 +64,7 @@
 }
 
 .profile-text1:nth-of-type(1) {
-    margin-right: 41rem;
+    margin-right: 42rem;
 }
 
 .profile-text1:nth-of-type(2) {
