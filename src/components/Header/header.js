@@ -15,11 +15,11 @@ function Header() {
         <div className={`header ${isDarkMode ? 'dark' : ''}`}>
             <NavLink exact to="/"><img src="logo.svg" alt="Logo" className="logo" /></NavLink>
             <div className="account">
-            <img src={isDarkMode ? '/moon.svg' : '/sun-light.svg'} onClick={handleSunClick}/>
             <NavLink to="/doctor" className="header-chat" >Doctors</NavLink>
             <NavLink to="/chat" className="header-chat" >ChatAI(demo)</NavLink>
             <NavLink to="/profile" className="header-account" >Account</NavLink>
             </div>
+            <img src={isDarkMode ? '/sun.svg' : '/moon.svg'} onClick={handleSunClick}/>
         </div>
     );
 }
