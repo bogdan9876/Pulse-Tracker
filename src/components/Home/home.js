@@ -3,12 +3,14 @@ import { fetchData, pressButton } from '../../api';
 import './home.css';
 import Header from '../Header/header';
 import Loader from '../Loader/loader';
+import { useSelector } from 'react-redux';
 
 function Home() {
   const [data, setData] = useState([]);
   const [imageLoaded, setImageLoaded] = useState(false);
   const [pageLoaded, setPageLoaded] = useState(false);
   const [headerLoaded, setHeaderLoaded] = useState(false);
+  const isDarkMode = useSelector(state => state.isDarkMode);
 
   useEffect(() => {
     const intervalId = setInterval(getData, 500);
@@ -73,7 +75,7 @@ function Home() {
       </div>
       <div className="sub-header">
         <div className="header-content">HEART</div>
-        {imageLoaded && <img src="arrow.svg" alt="Arrow" className="arrow-icon" />}
+        {imageLoaded && <img src={isDarkMode ? '/arrow-dark.svg' : '/arrow.svg'} alt="Arrow" className="arrow-icon" />}
       </div>
       <div className="buttons">
         <div className="button" onClick={handleButtonClick}>
@@ -90,10 +92,10 @@ function Home() {
           const time = `${createdAt.getHours() - 3}:${createdAt.getMinutes()}`;
 
           return (
-            <li key={index} className="liStyle">
+            <li key={index} className={`liStyle ${isDarkMode ? 'dark' : ''}`}>
               <div className='date'>
                 {date}
-                <div className='time'>
+                <div className={`time ${isDarkMode ? 'dark' : ''}`}>
                   {time}
                 </div>
               </div>

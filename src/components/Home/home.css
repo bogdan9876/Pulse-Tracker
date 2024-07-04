@@ -157,6 +157,10 @@
     padding: 0 20px;
 }
 
+.liStyle.dark {
+    background-color: #212121;
+}
+
 .uls {
     list-style: none;
     margin-top: 25rem;
@@ -184,4 +188,8 @@
 .time {
     font-size: 36px;
     color: #4F4F4F;
+}
+
+.time.dark {
+    color: #a4a3b1;
 }
