@@ -12,7 +12,7 @@
 }
 
 .header.dark {
-    background-color: black;
+    background-color: #212121;
 }
 
 .account {
@@ -25,7 +25,6 @@
     margin-right: 3.5rem;
 }
 
-.header-account {
-    text-decoration: none;
-    color: black;
+.header-chat.dark {
+    color: #D5D4EB;
 }
