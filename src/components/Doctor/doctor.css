@@ -5,6 +5,10 @@
     padding: 10px;
 }
 
+.item.dark {
+    border-color: red;
+}
+
 .itemNumber {
     margin-left: 10px;
     font-size: 40px;
@@ -104,6 +108,10 @@
     border-bottom: 1px solid red;
 }
 
+.divided1.dark {
+    border-color: white;
+}
+
 .learnMoreContainer5 {
     display: flex;
     align-items: center;
@@ -151,6 +159,11 @@
     color: black;
     margin-bottom: 10px;
     margin-top: 2rem;
+}
+
+.profile-inputs88.dark input {
+    background-color: #212121;
+    color: #EAE9FF;
 }
 
 .search-icon88 {

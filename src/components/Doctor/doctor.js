@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import Header from '../Header/header';
+import { useSelector } from 'react-redux';
 import './doctor.css';
 
 const Doctor = () => {
     const [doctors, setDoctors] = useState([]);
     const [searchQuery, setSearchQuery] = useState('');
+    const isDarkMode = useSelector(state => state.isDarkMode);
 
     const handleSignupClick88 = () => {
         const confirmed = window.confirm('Are you sure that you want to be redirected to a third-party site?');
@@ -36,7 +38,7 @@ const Doctor = () => {
             <Header />
             <div>
                 <div className='main-header'>Doctors</div>
-                <div className='profile-inputs88'>
+                <div className={`profile-inputs88 ${isDarkMode ? 'dark' : ''}`}>
                     <div className="input-container99">
                         <input
                             type="text"
@@ -45,7 +47,7 @@ const Doctor = () => {
                             value={searchQuery}
                             onChange={handleInputChange88}
                         />
-                        <img src="/loop.svg" alt="Search" className="search-icon88" />
+                        <img src={isDarkMode ? '/loop-dark.svg' : '/loop.svg'} alt="Search" className="search-icon88" />
                     </div>
                 </div>
                 <div className="titleContainer">
@@ -53,21 +55,21 @@ const Doctor = () => {
                 </div>
                 <div className="elements-doctors">
                     {doctors.map((doctor, index) => (
-                        <div key={index} className="divided1">
+                        <div key={index} className={`divided1 ${isDarkMode ? 'dark' : ''}`}>
                             <div className="leftSection1">
-                                <div className="item">
+                                <div className={`item ${isDarkMode ? 'dark' : ''}`}>
                                     <span className="itemText1">Name</span>
                                     <span className="itemNumber">{doctor.name}</span>
                                 </div>
-                                <div className="item">
+                                <div className={`item ${isDarkMode ? 'dark' : ''}`}>
                                     <span className="itemText1">Position</span>
                                     <span className="itemNumber">{doctor.position}</span>
                                 </div>
-                                <div className="item">
+                                <div className={`item ${isDarkMode ? 'dark' : ''}`}>
                                     <span className="itemText1">Experience</span>
                                     <span className="itemNumber">{doctor.experience}</span>
                                 </div>
-                                <div className="item">
+                                <div className={`item ${isDarkMode ? 'dark' : ''}`}>
                                     <span className="itemText1">Location</span>
                                     <span className="itemNumber">{doctor.location}</span>
                                 </div>
@@ -81,7 +83,7 @@ const Doctor = () => {
                                 <div className="learnMoreContainer5">
                                     <div className="learnMore5">
                                         <p className="learnMoreText5" onClick={handleSignupClick88}>Sign up for a visit</p>
-                                        <img src="/arrow2.svg" alt="Arrow" className="arrowIcon" />
+                                        <img src={isDarkMode ? '/arrow2-dark.svg' : '/arrow2.svg'} alt="Arrow" className="arrowIcon" />
                                     </div>
                                 </div>
                             </div>

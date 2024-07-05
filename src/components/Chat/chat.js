@@ -2,12 +2,14 @@ import React, { useState, useEffect, useRef } from 'react';
 import './chat.css';
 import Header from '../Header/header';
 import { sendMessageToServer, saveChatMessage, getChatHistory } from '../../api';
+import { useSelector } from 'react-redux';
 
 const Chat = () => {
     const [messages, setMessages] = useState([]);
     const [newMessage, setNewMessage] = useState('');
     const [isRecording, setIsRecording] = useState(false);
     const chatContainerRef = useRef(null);
+    const isDarkMode = useSelector(state => state.isDarkMode);
 
     useEffect(() => {
         const fetchMessages = async () => {
@@ -105,7 +107,7 @@ const Chat = () => {
                         ))}
                     </ul>
                 </div>
-                <div className="Chat-input">
+                <div className={`Chat-input ${isDarkMode ? 'dark' : ''}`}>
                     <div className="input-container66">
                         <input
                             type="text"
@@ -113,7 +115,7 @@ const Chat = () => {
                             onChange={handleInputChange}
                             onKeyPress={handleKeyPress}
                             placeholder="Write your question here"
-                            className="input-field" />
+                            className={`input-field ${isDarkMode ? 'dark' : ''}`} />
                         <button
                             onClick={handleVoiceInput}
                             className={`voice-input-button ${isRecording ? 'recording' : ''}`}
