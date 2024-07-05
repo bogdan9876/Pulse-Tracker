@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { NavLink, useNavigate } from 'react-router-dom';
-import { Form } from 'formik';
+import { useNavigate } from 'react-router-dom';
 import './profile.css';
 import Header from '../Header/header';
 import { useSelector } from 'react-redux';
@@ -14,8 +13,10 @@ const Profile = () => {
         surname: '',
         email: '',
         phone_number: '',
-        address: ''
+        address: '',
+        profile_picture: ''
     });
+    const [profileImage, setProfileImage] = useState(null);
 
     useEffect(() => {
         const fetchUserData = async () => {
@@ -29,7 +30,9 @@ const Profile = () => {
                 const data = await response.json();
                 if (response.ok) {
                     setUserData(data.user);
-                } else {
+                    if (data.user.profile_picture) {
+                        setProfileImage(`data:image/jpeg;base64,${data.user.profile_picture}`);
+                    }
                 }
             } catch (error) {
                 console.error('Error:', error);
@@ -37,7 +40,7 @@ const Profile = () => {
         };
 
         fetchUserData();
-    }, []);
+    }, [token]);
 
     const handleInputChange = (e) => {
         const { name, value } = e.target;
@@ -46,12 +49,27 @@ const Profile = () => {
             [name]: value
         }));
     };
-    
+
+    const handleFileChange = (e) => {
+        const file = e.target.files[0];
+        if (file) {
+            const reader = new FileReader();
+            reader.onloadend = () => {
+                setProfileImage(reader.result);
+                setUserData(prevState => ({
+                    ...prevState,
+                    profile_picture: reader.result.split(',')[1]
+                }));
+            };
+            reader.readAsDataURL(file);
+        }
+    };
+
     const handleSaveChanges = async () => {
         try {
             const confirmed = window.confirm('Are you sure you want to save changes?');
-            if (!confirmed) window.location.reload();;
-    
+            if (!confirmed) window.location.reload();
+
             const response = await fetch('http://localhost:5000/user', {
                 method: 'PUT',
                 headers: {
@@ -60,7 +78,7 @@ const Profile = () => {
                 },
                 body: JSON.stringify(userData),
             });
-            const data = await response.json();
+            await response.json();
             window.location.reload();
         } catch (error) {
             console.error('Error:', error);
@@ -69,7 +87,6 @@ const Profile = () => {
 
     const handleSignOut = () => {
         const confirmed = window.confirm('Are you sure you want to sign out?');
-
         if (confirmed) {
             localStorage.removeItem('accessToken');
             navigate('/login');
@@ -82,6 +99,13 @@ const Profile = () => {
             <div className='profile-header'>MY ACCOUNT</div>
             <div className='profile-container'>
                 <div className={`profile-inputs ${isDarkMode ? 'dark' : ''}`}>
+                    <span className='profile-text1'>Profile Picture</span>
+                    <input type="file" accept="image/*" onChange={handleFileChange} />
+                    {profileImage && (
+                        <div className="profile-image-container">
+                            <img src={profileImage} alt="Profile" className="profile-image" />
+                        </div>
+                    )}
                     <span className='profile-text1'>Name</span>
                     <input type="text" name="name" value={userData.name} onChange={handleInputChange} placeholder="Your name" />
                     <span className='profile-text1'>Surname</span>
