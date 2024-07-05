@@ -9,7 +9,6 @@ function Home() {
   const [data, setData] = useState([]);
   const [imageLoaded, setImageLoaded] = useState(false);
   const [pageLoaded, setPageLoaded] = useState(false);
-  const [headerLoaded, setHeaderLoaded] = useState(false);
   const isDarkMode = useSelector(state => state.isDarkMode);
 
   useEffect(() => {
@@ -19,34 +18,29 @@ function Home() {
   }, []);
 
   useEffect(() => {
-    const loadImage = async (src) => {
-      return new Promise((resolve, reject) => {
-        const img = new Image();
-        img.onload = () => resolve();
-        img.onerror = (error) => reject(error);
-        img.src = src;
-      });
-    };
-
-    const loadHeader = async () => {
-      await new Promise(resolve => setTimeout(resolve, 100));
-      setHeaderLoaded(true);
+    const loadImage = async (imageName) => {
+        const themeSuffix = isDarkMode && imageName === 'arrow' ? '-dark' : '';
+        const src = `${imageName}${themeSuffix}.svg`;
+        return new Promise((resolve, reject) => {
+            const img = new Image();
+            img.onload = () => resolve();
+            img.onerror = (error) => reject(error);
+            img.src = src;
+        });
     };
 
     const loadImages = async () => {
-      await Promise.all([
-        loadImage('heart.svg'),
-        loadImage('arrow.svg'),
-        ...data.map(item => loadImage('liheart.svg')),
-      ]);
-      setImageLoaded(true);
-      setPageLoaded(true);
+        await Promise.all([
+            loadImage('heart'),
+            ...data.map(item => loadImage('liheart')),
+        ]);
+        await loadImage('arrow');
+        setImageLoaded(true);
+        setPageLoaded(true);
     };
-
-    loadHeader();
     loadImages();
+}, [data, isDarkMode]);
 
-  }, [data]);
 
   const getData = async () => {
     try {
@@ -61,7 +55,7 @@ function Home() {
     await pressButton();
   };
 
-  if (!pageLoaded || !headerLoaded) {
+  if (!pageLoaded) {
     return <Loader />;
   }
 
