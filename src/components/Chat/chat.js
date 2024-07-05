@@ -9,7 +9,10 @@ const Chat = () => {
     const [newMessage, setNewMessage] = useState('');
     const [isRecording, setIsRecording] = useState(false);
     const chatContainerRef = useRef(null);
+    const token = localStorage.getItem('accessToken');
     const isDarkMode = useSelector(state => state.isDarkMode);
+    const [userData, setUserData] = useState(null);
+    const [profileImage, setProfileImage] = useState(null);
 
     useEffect(() => {
         const fetchMessages = async () => {
@@ -24,9 +27,33 @@ const Chat = () => {
         fetchMessages();
     }, []);
 
+    useEffect(() => {
+        const fetchUserData = async () => {
+            try {
+                const response = await fetch('http://localhost:5000/user', {
+                    method: 'GET',
+                    headers: {
+                        Authorization: `Bearer ${token}`,
+                    },
+                });
+                const data = await response.json();
+                if (response.ok) {
+                    setUserData(data.user);
+                    if (data.user.profile_picture) {
+                        setProfileImage(`data:image/jpeg;base64,${data.user.profile_picture}`);
+                    }
+                }
+            } catch (error) {
+                console.error('Error:', error);
+            }
+        };
+
+        fetchUserData();
+    }, [token]);
+
     const addMessage = async () => {
         if (newMessage.trim() !== '') {
-            const userMessage = { text: newMessage, user: 'user' };
+            const userMessage = { text: newMessage, user: 'user', profile_picture: profileImage };
             const updatedMessages = [...messages, userMessage];
             setMessages(updatedMessages);
             setNewMessage('');
@@ -92,11 +119,11 @@ const Chat = () => {
                 <div ref={chatContainerRef} className="Chat-container">
                     <ul className="Chat-messages">
                         {messages.map((message, index) => (
-                            <li key={index} className={`Chat-message ${message.user}`}>
-                                <div className="message-container">
+                            <li key={index} className={`Chat-message ${message.user} ${isDarkMode ? 'dark' : ''}`}>
+                            <div className="message-container">
                                     <img
                                         className="message-sender-photo"
-                                        src={message.user === 'user' ? '/user.jpg' : '/chatbot.png'}
+                                        src={message.user === 'user' ? (userData && userData.profile_picture ? profileImage : '/user.jpg') : '/chatbot.png'}
                                         alt={message.user} />
                                     <div className="message-content">
                                         <span className="message-sender">{message.user === 'user' ? 'You: ' : 'Cardia Bot: '}</span>
