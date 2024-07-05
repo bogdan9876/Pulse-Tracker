@@ -49,18 +49,14 @@
 }
 
 .profile-image-container {
-    width: 300px;
-    height: 300px;
     margin: 0 auto;
     overflow: hidden;
     border-radius: 10px;
+    margin-top: 2rem;
 }
 
 .profile-image {
-    width: auto;
-    height: auto;
-    max-width: 100%;
-    max-height: 100%;
+    width: 300px;
     object-fit: contain;
 }
 
@@ -80,22 +76,26 @@
 }
 
 .profile-text1:nth-of-type(1) {
-    margin-right: 42rem;
+    margin-right: 33rem;
 }
 
 .profile-text1:nth-of-type(2) {
-    margin-right: 39rem;
-}
-
-.profile-text1:nth-of-type(3) {
     margin-right: 42rem;
 }
 
+.profile-text1:nth-of-type(3) {
+    margin-right: 38.5rem;
+}
+
 .profile-text1:nth-of-type(4) {
-    margin-right: 40rem;
+    margin-right: 42rem;
 }
 
 .profile-text1:nth-of-type(5) {
+    margin-right: 39rem;
+}
+
+.profile-text1:nth-of-type(6) {
     margin-right: 39rem;
 }
 

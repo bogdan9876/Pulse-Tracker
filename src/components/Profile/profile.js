@@ -99,13 +99,13 @@ const Profile = () => {
             <div className='profile-header'>MY ACCOUNT</div>
             <div className='profile-container'>
                 <div className={`profile-inputs ${isDarkMode ? 'dark' : ''}`}>
+                    <div className="profile-image-container">
+                        {profileImage && (
+                            <img src={profileImage} alt="Profile" className="profile-image" />
+                        )}
+                    </div>
                     <span className='profile-text1'>Profile Picture</span>
                     <input type="file" accept="image/*" onChange={handleFileChange} />
-                    {profileImage && (
-                        <div className="profile-image-container">
-                            <img src={profileImage} alt="Profile" className="profile-image" />
-                        </div>
-                    )}
                     <span className='profile-text1'>Name</span>
                     <input type="text" name="name" value={userData.name} onChange={handleInputChange} placeholder="Your name" />
                     <span className='profile-text1'>Surname</span>
