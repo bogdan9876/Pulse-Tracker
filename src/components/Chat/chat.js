@@ -147,7 +147,7 @@ const Chat = () => {
                             onClick={handleVoiceInput}
                             className={`voice-input-button ${isRecording ? 'recording' : ''}`}
                         >
-                            🎤
+                            <img src={isDarkMode ? '/voice-dark.svg' : '/voice.svg'} />
                         </button>
                     </div>
                 </div>
