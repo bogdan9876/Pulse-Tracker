@@ -1,23 +1,18 @@
 .Chat {
     display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: flex-end;
-    overflow-x: hidden;
-    position: relative;
+    flex-direction: row;
+    align-items: flex-start; /* Align items at the top */
+    justify-content: center; /* Center horizontally */
+    height: 100vh; /* Adjust height to fill the screen */
+    box-sizing: border-box;
 }
 
 .Chat-container {
-    display: flex;
-    flex-direction: column;
+    width: 60%; /* Adjust width as needed */
     padding: 10px;
-    width: 60%;
-    overflow-y: auto;
-    margin-bottom: 5rem;
-    margin-left: auto;
-    margin-right: auto;
-    max-width: 1000px;
-    z-index: 1;
+    overflow-y: auto; /* Enable scrolling if needed */
+    max-width: 1000px; /* Example maximum width */
+    box-sizing: border-box;
 }
 
 .Chat-message {

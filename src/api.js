@@ -43,11 +43,20 @@ export const saveChatMessage = async (messageData) => {
   return response.data;
 };
 
-export const getChatHistory = async () => {
-  const response = await axios.get(`http://localhost:5000/chat/history`, {
+export const getChatHistory = async (chatId) => {
+    const response = await axios.get(`http://localhost:5000/chat/history/${chatId}`, {
       headers: {
         Authorization: `Bearer ${token}`,
       },
-  });
-  return response.data;
+    });
+    return response.data;
+};
+
+export const getChatList = async () => {
+    const response = await axios.get('http://localhost:5000/chat/list', {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+    return response.data;
 };
