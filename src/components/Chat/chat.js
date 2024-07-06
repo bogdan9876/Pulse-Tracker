@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import './chat.css';
 import Header from '../Header/header';
+import Loader from '../Loader/loader';
 import { sendMessageToServer, saveChatMessage, getChatHistory } from '../../api';
 import { useSelector } from 'react-redux';
 
@@ -8,6 +9,7 @@ const Chat = () => {
     const [messages, setMessages] = useState([]);
     const [newMessage, setNewMessage] = useState('');
     const [isRecording, setIsRecording] = useState(false);
+    const [loading, setLoading] = useState(true);
     const chatContainerRef = useRef(null);
     const token = localStorage.getItem('accessToken');
     const isDarkMode = useSelector(state => state.isDarkMode);
@@ -24,10 +26,6 @@ const Chat = () => {
             }
         };
 
-        fetchMessages();
-    }, []);
-
-    useEffect(() => {
         const fetchUserData = async () => {
             try {
                 const response = await fetch('http://localhost:5000/user', {
@@ -48,7 +46,11 @@ const Chat = () => {
             }
         };
 
-        fetchUserData();
+        const loadData = async () => {
+            await Promise.all([fetchMessages(), fetchUserData()]);
+            setLoading(false);
+        };
+        loadData();
     }, [token]);
 
     const addMessage = async () => {
@@ -111,6 +113,10 @@ const Chat = () => {
 
         recognition.start();
     };
+
+    if (loading) {
+        return <Loader />;
+    }
 
     return (
         <>
