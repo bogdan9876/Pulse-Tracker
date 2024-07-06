@@ -2,11 +2,14 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './profile.css';
 import Header from '../Header/header';
+import Loader from '../Loader/loader';
 import { useSelector } from 'react-redux';
 
 const Profile = () => {
     const navigate = useNavigate();
     const token = localStorage.getItem('accessToken');
+    const [imageLoaded, setImageLoaded] = useState(false);
+    const [pageLoaded, setPageLoaded] = useState(false);
     const isDarkMode = useSelector(state => state.isDarkMode);
     const [userData, setUserData] = useState({
         name: '',
@@ -33,6 +36,7 @@ const Profile = () => {
                     if (data.user.profile_picture) {
                         setProfileImage(`data:image/jpeg;base64,${data.user.profile_picture}`);
                     }
+                    setPageLoaded(true);
                 }
             } catch (error) {
                 console.error('Error:', error);
@@ -91,6 +95,27 @@ const Profile = () => {
             localStorage.removeItem('accessToken');
             navigate('/login');
         }
+    };
+
+    useEffect(() => {
+        const loadImage = async (imageName) => {
+            return new Promise((resolve, reject) => {
+                const img = new Image();
+                img.onload = () => resolve();
+                img.onerror = (error) => reject(error);
+                img.src = imageName;
+            });
+        };
+    
+        const loadImages = async () => {
+            await loadImage(isDarkMode ? '/logout-dark.svg' : '/logout.svg');
+            setImageLoaded(true);
+        };
+        loadImages();
+    }, [isDarkMode]);
+
+    if (!pageLoaded) {
+        return <Loader />;
     };
 
     return (
