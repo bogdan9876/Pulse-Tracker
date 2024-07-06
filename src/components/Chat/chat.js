@@ -3,7 +3,7 @@ import './chat.css';
 import Header from '../Header/header';
 import Loader from '../Loader/loader';
 import ChatList from './chatList';
-import { sendMessageToServer, saveChatMessage, getChatHistory, getChatList } from '../../api'; // Added createChat
+import { sendMessageToServer, saveChatMessage, getChatHistory, getChatList } from '../../api';
 import { useSelector } from 'react-redux';
 
 const Chat = () => {

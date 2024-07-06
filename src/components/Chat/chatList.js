@@ -12,7 +12,7 @@ const ChatList = ({ chats, onSelectChat, onCreateChat }) => {
         {chats.map((chat) => (
           <li key={chat.id} className="ChatList-item" onClick={() => onSelectChat(chat.id)}>
             <div className="chat-info">
-              <span className="chat-title">{chat.title}</span>
+              <span className="chat-title">{chat.chat_name}</span>
               <span className="chat-last-message">{chat.lastMessage}</span>
             </div>
           </li>
