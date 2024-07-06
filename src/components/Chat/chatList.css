@@ -13,10 +13,13 @@
 
 .ChatList-item {
     cursor: pointer;
-    padding: 10px;
-    border-bottom: 1px solid #ddd;
+    padding: 15px;
+    margin-bottom: 10px;
+    border: 1px solid #ddd;
+    background-color: rgb(105, 105, 52);
 }
 
 .ChatList-item:last-child {
-    border-bottom: none;
+    border: none;
+    background-color: transparent;
 }
