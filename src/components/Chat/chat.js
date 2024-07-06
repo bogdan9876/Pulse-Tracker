@@ -134,8 +134,14 @@ const Chat = () => {
     recognition.start();
   };
 
-  const handleSelectChat = (chatId) => {
+  const handleSelectChat = async (chatId) => {
     setSelectedChatId(chatId);
+    try {
+      const chatHistory = await getChatHistory(chatId);
+      setMessages(chatHistory);
+    } catch (error) {
+      console.error('Error fetching chat history:', error);
+    }
   };
 
   const handleCreateChat = async () => {
@@ -169,10 +175,9 @@ const Chat = () => {
         <div className="ChatList">
           <ul className="ChatList-items">
             {chats.map((chat) => (
-              <li key={chat.id} className="ChatList-item" >
+              <li key={chat.id} className="ChatList-item" onClick={() => handleSelectChat(chat.id)}>
                 <div className="chat-info">
                   <span className="chat-title">{chat.chat_name}</span>
-                  <span className="chat-last-message">{chat.lastMessage}</span>
                 </div>
               </li>
             ))}
