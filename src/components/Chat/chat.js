@@ -2,7 +2,6 @@ import React, { useState, useEffect, useRef } from 'react';
 import './chat.css';
 import Header from '../Header/header';
 import Loader from '../Loader/loader';
-import ChatList from './chatList';
 import { sendMessageToServer, saveChatMessage, getChatHistory, getChatList } from '../../api';
 import { useSelector } from 'react-redux';
 
@@ -165,10 +164,26 @@ const Chat = () => {
   return (
     <>
       <Header />
-      <div className="ChatPage">
-        <ChatList chats={chats} onSelectChat={handleSelectChat} onCreateChat={handleCreateChat} />
-      </div>
+
       <div className="Chat">
+        <div className="ChatList">
+          <ul className="ChatList-items">
+            {chats.map((chat) => (
+              <li key={chat.id} className="ChatList-item" >
+                <div className="chat-info">
+                  <span className="chat-title">{chat.chat_name}</span>
+                  <span className="chat-last-message">{chat.lastMessage}</span>
+                </div>
+              </li>
+            ))}
+            <li className="ChatList-item create-chat-item" onClick={handleCreateChat}>
+              <div className="chat-info">
+                <span className="chat-title">+</span>
+                <span className="chat-last-message">Create New Chat</span>
+              </div>
+            </li>
+          </ul>
+        </div>
         <div ref={chatContainerRef} className="Chat-container">
           <ul className="Chat-messages">
             {messages.map((message, index) => (
