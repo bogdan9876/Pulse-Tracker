@@ -81,11 +81,11 @@ const Chat = () => {
       setNewMessage('');
 
       try {
-        await saveChatMessage({ message: newMessage, sender: 'user', chatId: selectedChatId });
+        await saveChatMessage({ message: newMessage, sender: 'user', chat_id: selectedChatId });
         const data = await sendMessageToServer(newMessage);
         const serverMessage = { text: data.answer, user: 'server' };
         setMessages((prevMessages) => [...prevMessages, serverMessage]);
-        await saveChatMessage({ message: data.answer, sender: 'server', chatId: selectedChatId });
+        await saveChatMessage({ message: data.answer, sender: 'server', chat_id: selectedChatId });
       } catch (error) {
         console.error('There was a problem with sending the message:', error);
       }
@@ -170,7 +170,6 @@ const Chat = () => {
   return (
     <>
       <Header />
-
       <div className="Chat">
         <div className="ChatList">
           <ul className="ChatList-items">
@@ -192,10 +191,7 @@ const Chat = () => {
         <div ref={chatContainerRef} className="Chat-container">
           <ul className="Chat-messages">
             {messages.map((message, index) => (
-              <li
-                key={index}
-                className={`Chat-message ${message.user} ${isDarkMode ? 'dark' : ''}`}
-              >
+              <li key={index} className={`Chat-message ${message.user} ${isDarkMode ? 'dark' : ''}`}>
                 <div className="message-container">
                   <img
                     className="message-sender-photo"
@@ -233,7 +229,7 @@ const Chat = () => {
               onClick={handleVoiceInput}
               className={`voice-input-button ${isRecording ? 'recording' : ''}`}
             >
-              <img src={isDarkMode ? '/voice-dark.svg' : '/voice.svg'} />
+              <img src={isDarkMode ? '/voice-dark.svg' : '/voice.svg'} alt="voice" />
             </button>
           </div>
         </div>
