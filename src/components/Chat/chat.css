@@ -1,17 +1,16 @@
 .Chat {
     display: flex;
     flex-direction: row;
-    align-items: flex-start; /* Align items at the top */
-    justify-content: center; /* Center horizontally */
-    height: 100vh; /* Adjust height to fill the screen */
+    align-items: flex-start;
+    justify-content: center;
     box-sizing: border-box;
 }
 
 .Chat-container {
-    width: 60%; /* Adjust width as needed */
+    width: 60%;
     padding: 10px;
-    overflow-y: auto; /* Enable scrolling if needed */
-    max-width: 1000px; /* Example maximum width */
+    overflow-y: auto;
+    max-width: 1000px;
     box-sizing: border-box;
 }
 

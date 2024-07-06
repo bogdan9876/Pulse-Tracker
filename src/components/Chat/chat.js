@@ -147,12 +147,12 @@ const Chat = () => {
           'Content-Type': 'application/json',
           Authorization: `Bearer ${token}`,
         },
-        body: JSON.stringify({ chat_name: newChatName }), // Використовуйте введену назву чату
+        body: JSON.stringify({ chat_name: newChatName }),
       });
       const data = await response.json();
       console.log('Response from server:', data);
-      setChats((prevChats) => [...prevChats, { id: data.chat_id, chat_name: newChatName }]); // Оновлення стану зі списком чатів
-      setSelectedChatId(data.chat_id); // Вибір новоствореного чату, якщо потрібно
+      setChats((prevChats) => [...prevChats, { id: data.chat_id, chat_name: newChatName }]);
+      setSelectedChatId(data.chat_id);
     } catch (error) {
       console.error('Error creating new chat:', error);
     }
