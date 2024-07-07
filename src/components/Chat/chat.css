@@ -72,6 +72,11 @@
     background-color: transparent;
 }
 
+.ChatList-item.selected {
+    background-color: rgb(150, 150, 150);
+    border: 2px solid rgb(0, 0, 0);
+}
+
 .input-container66 {
     display: flex;
     width: 60%;
@@ -95,7 +100,6 @@
     background-color:#212121;
     color:#EAE9FF;
 }
-
 
 .message-sender-photo {
     width: 60px;

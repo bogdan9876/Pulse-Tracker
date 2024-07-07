@@ -173,9 +173,14 @@ const Chat = () => {
         <div className="ChatList">
           <ul className="ChatList-items">
             {chats.map((chat) => (
-              <li key={chat.id} className="ChatList-item" onClick={() => handleSelectChat(chat.id)}>
+              <li
+                key={chat.id}
+                className={`ChatList-item ${chat.id === selectedChatId ? 'selected' : ''}`}
+                onClick={() => handleSelectChat(chat.id)}
+              >
                 <div className="chat-info">
                   <span className="chat-title">{chat.chat_name}</span>
+                  <img src="/edit-name.jpg" width="30px"></img>
                 </div>
               </li>
             ))}
