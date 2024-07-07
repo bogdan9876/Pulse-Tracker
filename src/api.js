@@ -58,3 +58,21 @@ export const getChatList = async () => {
   });
   return response.data;
 };
+
+export const updateChatName = async (chatId, newChatName) => {
+  try {
+    const response = await axios.put(
+      `http://localhost:5000/chat/update/${chatId}`,
+      { chat_name: newChatName },
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
+    return response.data;
+  } catch (error) {
+    console.error('Error updating chat name:', error);
+    throw error;
+  }
+};

@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import './chat.css';
 import Header from '../Header/header';
 import Loader from '../Loader/loader';
-import { sendMessageToServer, saveChatMessage, getChatHistory, getChatList } from '../../api';
+import { sendMessageToServer, saveChatMessage, getChatHistory, getChatList, updateChatName } from '../../api';
 import { useSelector } from 'react-redux';
 
 const Chat = () => {
@@ -18,6 +18,8 @@ const Chat = () => {
   const [selectedChatId, setSelectedChatId] = useState(null);
   const [chats, setChats] = useState([]);
   const [newChatName, setNewChatName] = useState('');
+  const [editMode, setEditMode] = useState(false);
+  const [newChatNameInput, setNewChatNameInput] = useState('');
 
   useEffect(() => {
     const fetchChats = async () => {
@@ -162,6 +164,21 @@ const Chat = () => {
     }
   };
 
+  const handleEditNameClick = () => {
+    setEditMode(true);
+    setNewChatNameInput(chats.find(chat => chat.id === selectedChatId)?.chat_name || '');
+  };
+
+  const handleSaveNameClick = async () => {
+    try {
+      await updateChatName(selectedChatId, newChatNameInput);
+      setEditMode(false);
+      setChats(prevChats => prevChats.map(chat => chat.id === selectedChatId ? { ...chat, chat_name: newChatNameInput } : chat));
+    } catch (error) {
+      console.error('Error updating chat name:', error);
+    }
+  };
+
   if (loading) {
     return <Loader />;
   }
@@ -179,8 +196,23 @@ const Chat = () => {
                 onClick={() => handleSelectChat(chat.id)}
               >
                 <div className="chat-info">
-                  <span className="chat-title">{chat.chat_name}</span>
-                  <img src="/edit-name.jpg" width="30px"></img>
+                  {editMode && chat.id === selectedChatId ? (
+                    <>
+                      <input
+                        type="text"
+                        value={newChatNameInput}
+                        onChange={(e) => setNewChatNameInput(e.target.value)}
+                        autoFocus
+                        className="edit-input"
+                      />
+                      <button onClick={handleSaveNameClick} className="save-button">Save</button>
+                    </>
+                  ) : (
+                    <>
+                      <span className="chat-title">{chat.chat_name}</span>
+                      <img src="/edit-name.jpg" width="30px" onClick={handleEditNameClick} />
+                    </>
+                  )}
                 </div>
               </li>
             ))}
