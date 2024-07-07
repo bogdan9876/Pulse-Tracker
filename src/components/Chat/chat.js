@@ -157,7 +157,6 @@ const Chat = () => {
       const data = await response.json();
       console.log('Response from server:', data);
       setChats((prevChats) => [...prevChats, { id: data.chat_id, chat_name: newChatName }]);
-      setSelectedChatId(data.chat_id);
     } catch (error) {
       console.error('Error creating new chat:', error);
     }
@@ -180,10 +179,9 @@ const Chat = () => {
                 </div>
               </li>
             ))}
-            <li className="ChatList-item create-chat-item" onClick={handleCreateChat}>
+            <li className="ChatList-item create-chat-item">
               <div className="chat-info">
-                <span className="chat-title">+</span>
-                <span className="chat-last-message">Create New Chat</span>
+                <span onClick={handleCreateChat}> + Create Chat</span>
               </div>
             </li>
           </ul>
