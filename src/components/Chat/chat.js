@@ -23,15 +23,8 @@ const Chat = () => {
 
   useEffect(() => {
     const fetchChats = async () => {
-      try {
-        const chatList = await getChatList();
-        setChats(chatList);
-        if (chatList.length > 0) {
-          setSelectedChatId(chatList[0].id);
-        }
-      } catch (error) {
-        console.error('Error fetching chat list:', error);
-      }
+      const chatList = await getChatList();
+      setChats(chatList);
     };
     fetchChats();
   }, []);
