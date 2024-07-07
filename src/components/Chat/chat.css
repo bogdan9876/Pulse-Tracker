@@ -67,11 +67,6 @@
     background-color: rgb(105, 105, 52);
 }
 
-.ChatList-item:last-child {
-    border: none;
-    background-color: transparent;
-}
-
 .ChatList-item.selected {
     background-color: rgb(150, 150, 150);
     border: 2px solid rgb(0, 0, 0);

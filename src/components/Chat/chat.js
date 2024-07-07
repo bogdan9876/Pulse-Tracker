@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import './chat.css';
 import Header from '../Header/header';
 import Loader from '../Loader/loader';
-import { sendMessageToServer, saveChatMessage, getChatHistory, getChatList, updateChatName } from '../../api';
+import { sendMessageToServer, saveChatMessage, getChatHistory, getChatList, updateChatName, deleteChat } from '../../api';
 import { useSelector } from 'react-redux';
 
 const Chat = () => {
@@ -179,6 +179,17 @@ const Chat = () => {
     }
   };
 
+  const handleDeleteChat = async (chatId) => {
+    try {
+      await deleteChat(chatId);
+      setChats(prevChats => prevChats.filter(chat => chat.id !== chatId));
+      setMessages([]);
+      setSelectedChatId(null);
+    } catch (error) {
+      console.error('Error deleting chat:', error);
+    }
+  };
+
   if (loading) {
     return <Loader />;
   }
@@ -214,14 +225,18 @@ const Chat = () => {
                     </>
                   )}
                 </div>
+                <button className="delete-button" onClick={() => handleDeleteChat(chat.id)}>Delete</button> {/* кнопка видалення чату */}
               </li>
             ))}
-            <li className="ChatList-item create-chat-item">
-              <div className="chat-info">
-                <span onClick={handleCreateChat}> + Create Chat</span>
-              </div>
-            </li>
           </ul>
+          <input
+            type="text"
+            placeholder="Enter new chat name"
+            value={newChatName}
+            onChange={(e) => setNewChatName(e.target.value)}
+            className="chat-input"
+          />
+          <button onClick={handleCreateChat} className="create-button"> + Create Chat</button>
         </div>
         <div ref={chatContainerRef} className="Chat-container">
           <ul className="Chat-messages">

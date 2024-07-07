@@ -76,3 +76,12 @@ export const updateChatName = async (chatId, newChatName) => {
     throw error;
   }
 };
+
+export const deleteChat = async (chatId) => {
+  const response = await axios.delete(`http://localhost:5000/chat/${chatId}`, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
+  return response.data;
+};
