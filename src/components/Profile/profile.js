@@ -24,7 +24,7 @@ const Profile = () => {
     useEffect(() => {
         const fetchUserData = async () => {
             try {
-                const response = await fetch('http://localhost:5000/user', {
+                const response = await fetch('https://pulse-tracker-back-6a73aecb4f6b.herokuapp.com/user', {
                     method: 'GET',
                     headers: {
                         Authorization: `Bearer ${token}`,
@@ -74,7 +74,7 @@ const Profile = () => {
             const confirmed = window.confirm('Are you sure you want to save changes?');
             if (!confirmed) window.location.reload();
 
-            const response = await fetch('http://localhost:5000/user', {
+            const response = await fetch('https://pulse-tracker-back-6a73aecb4f6b.herokuapp.com/user', {
                 method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json',

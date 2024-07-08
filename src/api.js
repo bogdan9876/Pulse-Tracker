@@ -4,7 +4,7 @@ const token = localStorage.getItem('accessToken');
 
 export const pressButton = async () => {
   try {
-    await axios.post('http://localhost:5000/press-button', null, {
+    await axios.post('https://pulse-tracker-back-6a73aecb4f6b.herokuapp.com/press-button', null, {
       headers: {
         Authorization: `Bearer ${token}`,
       },
@@ -15,7 +15,7 @@ export const pressButton = async () => {
 };
 
 export const fetchData = async () => {
-  const response = await axios.get('http://localhost:5000/api/data', {
+  const response = await axios.get('https://pulse-tracker-back-6a73aecb4f6b.herokuapp.com/api/data', {
     headers: {
       Authorization: `Bearer ${token}`,
     },
@@ -24,7 +24,7 @@ export const fetchData = async () => {
 };
 
 export const sendMessageToServer = async (message) => {
-  const response = await axios.post(`http://localhost:5000/predict`, { message }, {
+  const response = await axios.post(`https://pulse-tracker-back-6a73aecb4f6b.herokuapp.com/predict`, { message }, {
     headers: {
       Authorization: `Bearer ${token}`,
     },
@@ -33,7 +33,7 @@ export const sendMessageToServer = async (message) => {
 };
 
 export const saveChatMessage = async (messageData) => {
-  const response = await axios.post(`http://localhost:5000/chat/message`, messageData, {
+  const response = await axios.post(`https://pulse-tracker-back-6a73aecb4f6b.herokuapp.com/chat/message`, messageData, {
     headers: {
       Authorization: `Bearer ${token}`,
     },
@@ -42,7 +42,7 @@ export const saveChatMessage = async (messageData) => {
 };
 
 export const getChatHistory = async (chatId) => {
-  const response = await axios.get(`http://localhost:5000/chat/history/${chatId}`, {
+  const response = await axios.get(`https://pulse-tracker-back-6a73aecb4f6b.herokuapp.com/chat/history/${chatId}`, {
     headers: {
       Authorization: `Bearer ${token}`,
     },
@@ -51,7 +51,7 @@ export const getChatHistory = async (chatId) => {
 };
 
 export const getChatList = async () => {
-  const response = await axios.get('http://localhost:5000/chat/list', {
+  const response = await axios.get('https://pulse-tracker-back-6a73aecb4f6b.herokuapp.com/chat/list', {
     headers: {
       Authorization: `Bearer ${token}`,
     },
@@ -62,7 +62,7 @@ export const getChatList = async () => {
 export const updateChatName = async (chatId, newChatName) => {
   try {
     const response = await axios.put(
-      `http://localhost:5000/chat/update/${chatId}`,
+      `https://pulse-tracker-back-6a73aecb4f6b.herokuapp.com/chat/update/${chatId}`,
       { chat_name: newChatName },
       {
         headers: {
@@ -78,7 +78,7 @@ export const updateChatName = async (chatId, newChatName) => {
 };
 
 export const deleteChat = async (chatId) => {
-  const response = await axios.delete(`http://localhost:5000/chat/${chatId}`, {
+  const response = await axios.delete(`https://pulse-tracker-back-6a73aecb4f6b.herokuapp.com/chat/${chatId}`, {
     headers: {
       Authorization: `Bearer ${token}`,
     },

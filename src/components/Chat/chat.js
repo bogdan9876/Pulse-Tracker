@@ -43,7 +43,7 @@ const Chat = () => {
 
     const fetchUserData = async () => {
       try {
-        const response = await fetch('http://localhost:5000/user', {
+        const response = await fetch('https://pulse-tracker-back-6a73aecb4f6b.herokuapp.com/user', {
           method: 'GET',
           headers: {
             Authorization: `Bearer ${token}`,
@@ -141,7 +141,7 @@ const Chat = () => {
 
   const handleCreateChat = async () => {
     try {
-      const response = await fetch('http://localhost:5000/chat/create', {
+      const response = await fetch('https://pulse-tracker-back-6a73aecb4f6b.herokuapp.com/chat/create', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

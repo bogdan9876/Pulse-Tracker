@@ -19,7 +19,7 @@ const Doctor = () => {
     useEffect(() => {
         const fetchData88 = async () => {
             try {
-                const response = await axios.get(`http://localhost:5000/doctors?position=${searchQuery}`);
+                const response = await axios.get(`https://pulse-tracker-back-6a73aecb4f6b.herokuapp.com/doctors?position=${searchQuery}`);
                 setDoctors(response.data);
             } catch (error) {
                 console.error('Error fetching doctors:', error);

@@ -34,7 +34,7 @@ const Register = () => {
 
   const handleRegister = async (values) => {
     try {
-      const response = await fetch('http://localhost:5000/register', {
+      const response = await fetch('https://pulse-tracker-back-6a73aecb4f6b.herokuapp.com/register', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
