@@ -12,7 +12,7 @@ function Home() {
   const isDarkMode = useSelector(state => state.isDarkMode);
 
   useEffect(() => {
-    const intervalId = setInterval(getData, 500);
+    const intervalId = setInterval(getData, 100000);
 
     return () => clearInterval(intervalId);
   }, []);
